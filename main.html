@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>義翔一家的專屬香港旅行</title>
+    <style>
+        :root {
+            --primary-color: #ff7e67;
+            --secondary-color: #a2d5f2;
+            --bg-color: #fcf9f2;
+            --text-color: #333333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 10px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+        .header p {
+            color: #666;
+            margin: 0;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .accordion {
+            background-color: white;
+            color: #444;
+            cursor: pointer;
+            padding: 20px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.4s;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .active, .accordion:hover {
+            background-color: var(--secondary-color);
+            color: #111;
+        }
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+        .active:after {
+            content: "\2212";
+        }
+        .panel {
+            padding: 0 20px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-radius: 0 0 10px 10px;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .panel-content {
+            padding: 20px 0;
+        }
+        .transport-box {
+            background-color: #f4f8fb;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>✨ 義翔一家的香港四天三夜奇妙之旅</h1>
+        <p>童話世界 ✕ 維港風情 ✕ 在地美食 專屬行程指南</p>
+    </div>
+
+    <button class="accordion">Day 1：抵達香港與入住休息</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>帶著期待的心情抵達香港，首日以輕鬆入住、儲備體力為主。</p>
+            <ul>
+                <li>抵達香港國際機場。</li>
+                <li>前往荃灣的飯店辦理入住手續。</li>
+                <li>周邊自由活動，好好休息。</li>
+            </ul>
+            <div class="transport-box">
+                <p>🚇 <strong>交通攻略：機場 ➔ 荃灣飯店</strong></p>
+                <p><strong>最佳建議：</strong> 一家人同行且有大件行李，建議直接在機場搭乘 <span class="highlight">機場巴士 A31 線</span> 直達荃灣，免去地鐵站內搬運的辛勞。</p>
+                <p><strong>港鐵路線：</strong> 機場站 (機場快綫) ➔ 青衣站 (轉東涌綫) ➔ 荔景站 (轉荃灣綫) ➔ 荃灣站。</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="accordion">Day 2：沉浸童話世界與巨星夜景</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>全日暢遊香港迪士尼樂園，享受充滿歡樂的家庭時光！</p>
+            <ul>
+                <li><strong>上午：</strong> 直奔目前最具人氣的「魔雪奇緣世界」。</li>
+                <li><strong>下午：</strong> 佔好位置，觀賞精彩歡樂的「花車巡遊」。</li>
+                <li><strong>晚上：</strong> 留在園區欣賞絢麗的「星夢光影之旅」夜間煙火秀。</li>
+            </ul>
+            <div class="transport-box">
+                <p>🚇 <strong>交通攻略：荃灣 ➔ 迪士尼</strong></p>
+                <p><strong>去程：</strong> 荃灣站 (荃灣綫) ➔ 荔景站 (轉東涌綫) ➔ 欣澳站 (轉迪士尼綫) ➔ 迪士尼站。</p>
+                <p><strong>回程：</strong> 煙火結束後，依原路線折返回荃灣站。</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="accordion">Day 3：寓教於樂、維港風情與廟街煙火氣</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>橫跨九龍與港島，體驗最經典的香港在地文化與百萬夜景。</p>
+            <ul>
+                <li><strong>上午：</strong> 前往「香港科學館」，體驗豐富的互動設施。</li>
+                <li><strong>下午：</strong> 搭乘經典「天星小輪」過海至中環。體驗「半山扶手電梯」，品嚐「蘭芳園」絲襪奶茶與奶油豬。搭乘「山頂纜車」上太平山，參觀蠟像館與凌霄閣。</li>
+                <li><strong>傍晚：</strong> 前往銅鑼灣鵝頸橋底，體驗獨特的「打小人」文化。</li>
+                <li><strong>晚上：</strong> 20:00 於尖沙咀海濱長廊觀賞「幻彩詠香江」。最後至「廟街夜市」品嚐興記煲仔飯與煎蠔餅。</li>
+            </ul>
+            <div class="transport-box">
+                <p>🚇 <strong>交通攻略：九龍港島走透透</strong></p>
+                <p><strong>科學館：</strong> 荃灣站搭荃灣綫一車直達 <span class="highlight">尖沙咀站</span>，步行前往。</p>
+                <p><strong>過海與太平山：</strong> 尖沙咀碼頭搭 <span class="highlight">天星小輪</span> 至中環。中環市區以步行銜接，至花園道搭 <span class="highlight">山頂纜車</span>。</p>
+                <p><strong>銅鑼灣與夜間行程：</strong> 中環站搭港島綫至 <span class="highlight">銅鑼灣站</span>。隨後搭港島綫至金鐘轉荃灣綫至 <span class="highlight">尖沙咀站</span> 看燈光秀。最後搭荃灣綫至 <span class="highlight">油麻地站</span> 逛廟街，結束後一車直達回荃灣。</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="accordion">Day 4：荃灣在地早茶、採買與賦歸</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>把握最後時光，體驗在地飲食文化並完成伴手禮採購。</p>
+            <ul>
+                <li><strong>上午：</strong> 在荃灣找一間在地茶樓，體驗傳統「一盅兩件」的港式早茶（蝦餃、燒賣）。</li>
+                <li><strong>中午：</strong> 前往東涌的「東薈城名店倉 (Citygate Outlets)」進行最後血拼。</li>
+                <li><strong>下午：</strong> 帶著滿滿回憶，前往香港國際機場搭機返家。</li>
+            </ul>
+            <div class="transport-box">
+                <p>🚇 <strong>交通攻略：荃灣 ➔ 東薈城 ➔ 機場</strong></p>
+                <p><strong>前往東薈城：</strong> 荃灣站 (荃灣綫) ➔ 荔景站 (轉東涌綫) ➔ 直達終點 <span class="highlight">東涌站</span>。</p>
+                <p><strong>最佳建議 (東涌至機場)：</strong> 採買結束後 <span class="highlight">不建議搭港鐵</span>。請直接在東涌站旁的巴士總站搭乘 <strong>S1 循環線公車</strong>，約 15 分鐘即可直達機場，方便又便宜！</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+    // 預設展開第一天
+    acc[0].click();
+</script>
+
+</body>
+</html>
