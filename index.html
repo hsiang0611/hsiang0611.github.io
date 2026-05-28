@@ -6,7 +6,8 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="apple-mobile-web-app-title" content="香港之旅">
-	<link rel="apple-touch-icon" href="你的Icon圖片路徑.png">
+	<!-- 如有 App icon 圖檔，請把下行的路徑換成實際檔名後再啟用 -->
+	<!-- <link rel="apple-touch-icon" href="icon.png"> -->
 	
     <title>義翔一家的專屬香港旅行</title>
     <style>
@@ -261,7 +262,7 @@
             margin-bottom: 15px;
             color: var(--text-color);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             flex-wrap: wrap;
         }
 
@@ -324,13 +325,13 @@
     </div>
 
     <div class="tabs-nav" role="tablist" aria-label="每日行程">
-        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="day1" onclick="openTab(event, 'day1')"><span class="hk-day-icon icon-red">🚇</span> Day 1<br>(06/11)</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="day2" onclick="openTab(event, 'day2')"><span class="hk-day-icon icon-green">🏰</span> Day 2<br>(06/12)</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="day3" onclick="openTab(event, 'day3')"><span class="hk-day-icon icon-red">⭐</span> Day 3<br>(06/13)</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="day4" onclick="openTab(event, 'day4')"><span class="hk-day-icon icon-green">🛍️</span> Day 4<br>(06/14)</button>
+        <button id="tab-day1" class="tab-btn active" role="tab" aria-selected="true" aria-controls="day1" onclick="openTab(event, 'day1')"><span class="hk-day-icon icon-red">🚇</span> Day 1<br>(06/11)</button>
+        <button id="tab-day2" class="tab-btn" role="tab" aria-selected="false" aria-controls="day2" onclick="openTab(event, 'day2')"><span class="hk-day-icon icon-green">🏰</span> Day 2<br>(06/12)</button>
+        <button id="tab-day3" class="tab-btn" role="tab" aria-selected="false" aria-controls="day3" onclick="openTab(event, 'day3')"><span class="hk-day-icon icon-red">⭐</span> Day 3<br>(06/13)</button>
+        <button id="tab-day4" class="tab-btn" role="tab" aria-selected="false" aria-controls="day4" onclick="openTab(event, 'day4')"><span class="hk-day-icon icon-green">🛍️</span> Day 4<br>(06/14)</button>
     </div>
 
-    <div id="day1" class="tab-pane active" role="tabpanel">
+    <div id="day1" class="tab-pane active" role="tabpanel" aria-labelledby="tab-day1">
         <h2 class="pane-title">🚇 Day 1：抵達香港、黃大仙與城寨探秘</h2>
         <p>帶著期待的心情抵達香港，辦理入住後，前往香火鼎盛的黃大仙祈福，再到充滿傳奇色彩的九龍城寨公園感受歷史與江南園林的交錯。</p>
         <ul>
@@ -347,7 +348,7 @@
         </div>
     </div>
 
-    <div id="day2" class="tab-pane" role="tabpanel">
+    <div id="day2" class="tab-pane" role="tabpanel" aria-labelledby="tab-day2">
         <h2 class="pane-title">🏰 Day 2：沉浸童話世界與巨星夜景</h2>
         <p>全日暢遊香港迪士尼樂園，享受充滿歡樂的家庭時光！</p>
         <ul>
@@ -363,7 +364,7 @@
         </div>
     </div>
 
-    <div id="day3" class="tab-pane" role="tabpanel">
+    <div id="day3" class="tab-pane" role="tabpanel" aria-labelledby="tab-day3">
         <h2 class="pane-title">⭐ Day 3：寓教於樂、維港風情與廟街夜市</h2>
         <p>橫跨九龍與港島，體驗最經典的香港在地文化與百萬夜景。</p>
         <ul>
@@ -380,7 +381,7 @@
         </div>
     </div>
 
-    <div id="day4" class="tab-pane" role="tabpanel">
+    <div id="day4" class="tab-pane" role="tabpanel" aria-labelledby="tab-day4">
         <h2 class="pane-title">🛍️ Day 4：昂坪纜車、東薈城與賦歸</h2>
         <p>把握最後時光，體驗高空纜車的壯麗，並完成伴手禮採購。</p>
         <ul>
@@ -417,12 +418,12 @@
     }
 
     // 2. 倒數計時器設定 
-    // 目標日期 1：出發時間 (2026年06月11日 00:00:00)
-    var startDate = new Date("2026-06-11T10:25:00").getTime();
-    // 目標日期 2：行程結束時間，以抵達台中班機為準 (2026年06月14日 19:55:00)
-    var endDate = new Date("2026-06-14T19:55:00").getTime();
+    // 目標日期 1：出發時間 (2026年06月11日 00:00:00，香港/台灣時區 +08:00)
+    var startDate = new Date("2026-06-11T10:25:00+08:00").getTime();
+    // 目標日期 2：行程結束時間，以抵達台中班機為準 (2026年06月14日 19:55:00 +08:00)
+    var endDate = new Date("2026-06-14T19:55:00+08:00").getTime();
 
-    var x = setInterval(function() {
+    function updateCountdown() {
         var now = new Date().getTime();
         
         // 判斷目前的時間狀態
@@ -464,8 +465,10 @@
         
         // 輸出結果
         document.getElementById("countdown").innerHTML = prefixText + days + "天 " + hours + "時 " + minutes + "分 " + seconds + "秒 ";
-        
-    }, 1000);
+    }
+
+    updateCountdown();                       // 先立即執行一次，避免畫面空白約 1 秒
+    var x = setInterval(updateCountdown, 1000);
 
     // 3. 獲取香港即時天氣 
     async function fetchWeather() {
@@ -554,8 +557,11 @@ document.querySelectorAll('.clickable-task').forEach((task, index) => {
         setDone(!task.classList.contains('completed-task'));
     }
 
-    // 滑鼠點擊切換狀態
-    task.addEventListener('click', toggle);
+    // 滑鼠點擊切換狀態（但若點到的是導航連結，就只開連結、不切換打卡狀態）
+    task.addEventListener('click', function(e) {
+        if (e.target.closest('a')) return;
+        toggle();
+    });
 
     // 鍵盤支援：Enter 或空白鍵切換（避免空白鍵捲動頁面）
     task.addEventListener('keydown', function(e) {
