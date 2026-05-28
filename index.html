@@ -6,8 +6,9 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="apple-mobile-web-app-title" content="香港之旅">
-	<!-- 如有 App icon 圖檔，請把下行的路徑換成實際檔名後再啟用 -->
-	<!-- <link rel="apple-touch-icon" href="icon.png"> -->
+	<meta name="theme-color" content="#10141f">
+	<link rel="manifest" href="manifest.json">
+	<link rel="apple-touch-icon" href="icon-192.png">
 	
     <title>義翔一家的專屬香港旅行</title>
     <style>
@@ -378,6 +379,94 @@
         }
         .site-footer a { color: #8a93a3; text-decoration: none; }
         .site-footer a:hover { color: var(--primary-color); }
+
+        /* 可收合區塊（打包清單 / 廣東話小抄） */
+        .collapse-box {
+            max-width: 600px;
+            margin: 0 auto 15px auto;
+            background-color: var(--header-bg-color);
+            border: 2px solid #333;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .collapse-box > summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 14px 18px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+        }
+        .collapse-box > summary::-webkit-details-marker { display: none; }
+        .collapse-box > summary::after { content: '▸'; color: var(--gold); transition: transform 0.2s ease; }
+        .collapse-box[open] > summary::after { transform: rotate(90deg); }
+        .collapse-box[open] > summary { border-bottom: 1px dashed #444; }
+        .collapse-body { padding: 12px 18px 18px 18px; }
+
+        /* 打包清單 */
+        .pack-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 7px 0;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+        .pack-item input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--primary-color); flex-shrink: 0; }
+        .pack-item.packed span { text-decoration: line-through; opacity: 0.5; }
+
+        /* 廣東話小抄 */
+        .phrase-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 14px;
+            padding: 8px 0;
+            border-bottom: 1px dashed #333;
+            align-items: baseline;
+        }
+        .phrase-row:last-child { border-bottom: none; }
+        .phrase-zh { color: #b0afab; font-size: 14px; }
+        .phrase-ct { color: var(--primary-color); font-weight: bold; font-size: 16px; text-shadow: 0 0 3px var(--primary-color); }
+        .phrase-py { grid-column: 1 / -1; font-size: 12px; color: var(--gold); opacity: 0.85; }
+
+        /* 全部完成慶祝效果 */
+        .confetti-piece {
+            position: fixed;
+            top: -40px;
+            z-index: 9999;
+            pointer-events: none;
+            animation: confetti-fall linear forwards;
+        }
+        @keyframes confetti-fall {
+            to { transform: translateY(110vh) rotate(540deg); opacity: 0.15; }
+        }
+        .celebrate-toast {
+            position: fixed;
+            left: 50%;
+            top: 28%;
+            transform: translateX(-50%) scale(0.9);
+            z-index: 10000;
+            background-color: var(--header-bg-color);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 20px var(--gold), 0 0 30px rgba(212,175,55,0.4);
+            padding: 22px 28px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 0 0 6px var(--gold);
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .celebrate-toast.show { opacity: 1; transform: translateX(-50%) scale(1); }
+        @media (prefers-reduced-motion: reduce) {
+            .confetti-piece { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -419,6 +508,44 @@
         <div id="progress-label" class="progress-label">🏁 行程打卡進度：0 / 0</div>
         <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
     </div>
+
+    <details class="collapse-box">
+        <summary>🧳 行前打包清單</summary>
+        <div class="collapse-body" id="packing-list">
+            <label class="pack-item"><input type="checkbox" data-pack="passport"><span>護照 / 台胞證（效期確認）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="ticket"><span>機票 / 訂房確認單（截圖存手機）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="cash"><span>港幣現金 + 信用卡</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="octopus"><span>八達通卡（或手機八達通）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="phone"><span>手機 + 充電線</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="powerbank"><span>行動電源（隨身行李，勿託運）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="adapter"><span>萬用轉接頭（香港為英規 3 孔）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="sim"><span>網路 SIM / eSIM / WiFi 分享器</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="meds"><span>常備藥品 / 個人藥物</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="umbrella"><span>輕便雨傘 / 雨衣（六月多雨）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="sun"><span>防曬乳 / 帽子 / 太陽眼鏡</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="clothes"><span>換洗衣物（透氣、好走的鞋）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="toiletry"><span>盥洗用品 / 保養品</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="kids"><span>兒童用品（如有需要）</span></label>
+        </div>
+    </details>
+
+    <details class="collapse-box">
+        <summary>🗣️ 廣東話常用語小抄</summary>
+        <div class="collapse-body">
+            <div class="phrase-row"><span class="phrase-zh">謝謝（請託 / 收到找零）</span><span class="phrase-ct">唔該</span><span class="phrase-py">發音近似「ㄇ ㄍㄡ」(m̀h gōi)</span></div>
+            <div class="phrase-row"><span class="phrase-zh">多謝（受人贈與 / 致謝）</span><span class="phrase-ct">多謝</span><span class="phrase-py">發音近似「ㄉㄛ ㄗㄝˋ」(dō jeh)</span></div>
+            <div class="phrase-row"><span class="phrase-zh">你好</span><span class="phrase-ct">你好</span><span class="phrase-py">發音近似「ㄋㄟˊ ㄏㄡˊ」(néih hóu)</span></div>
+            <div class="phrase-row"><span class="phrase-zh">不好意思 / 對不起</span><span class="phrase-ct">唔好意思</span><span class="phrase-py">發音近似「ㄇ ㄏㄡˊ ㄧˉ ㄙ」</span></div>
+            <div class="phrase-row"><span class="phrase-zh">多少錢？</span><span class="phrase-ct">幾多錢？</span><span class="phrase-py">發音近似「ㄍㄟˊ ㄉㄛ ㄑㄧㄣˊ」(géi dō chín)</span></div>
+            <div class="phrase-row"><span class="phrase-zh">結帳 / 買單</span><span class="phrase-ct">埋單</span><span class="phrase-py">發音近似「ㄇㄞˊ ㄉㄢ」(màaih dāan)</span></div>
+            <div class="phrase-row"><span class="phrase-zh">我要這個</span><span class="phrase-ct">我要呢個</span><span class="phrase-py">發音近似「ㄥㄛˊ ㄧㄨˋ ㄋㄧ ㄍㄛ」</span></div>
+            <div class="phrase-row"><span class="phrase-zh">好吃</span><span class="phrase-ct">好食</span><span class="phrase-py">發音近似「ㄏㄡˊ ㄙㄝㄍ」(hóu sihk)</span></div>
+            <div class="phrase-row"><span class="phrase-zh">廁所在哪裡？</span><span class="phrase-ct">廁所喺邊度？</span><span class="phrase-py">發音近似「ㄑㄧ ㄙㄛˊ ㄏㄞˊ ㄅㄧㄣ ㄉㄛˋ」</span></div>
+            <div class="phrase-row"><span class="phrase-zh">（公車 / 小巴）我要下車</span><span class="phrase-ct">有落 / 落車</span><span class="phrase-py">發音近似「ㄧㄠˇ ㄌㄛㄎ」(yáuh lohk)</span></div>
+            <div class="phrase-row"><span class="phrase-zh">不用了 / 不需要</span><span class="phrase-ct">唔使喇</span><span class="phrase-py">發音近似「ㄇ ㄙㄞˊ ㄌㄚ」(m̀h sái la)</span></div>
+            <div class="phrase-row"><span class="phrase-zh">再見</span><span class="phrase-ct">拜拜 / 再見</span><span class="phrase-py">發音近似「ㄅㄞ ㄅㄞ」</span></div>
+        </div>
+    </details>
 
     <div class="tabs-nav" role="tablist" aria-label="每日行程">
         <button id="tab-day1" class="tab-btn active" role="tab" aria-selected="true" aria-controls="day1" onclick="openTab(event, 'day1')"><span class="hk-day-icon icon-red">🚇</span> Day 1<br>(06/11)</button>
@@ -502,7 +629,7 @@
 
 <script>
     // 1. 頁籤 (Tabs) 切換功能
-    function openTab(evt, dayName) {
+    function activateTab(dayName) {
         var i, tabpanes, tabbtns;
         tabpanes = document.getElementsByClassName("tab-pane");
         for (i = 0; i < tabpanes.length; i++) {
@@ -513,10 +640,31 @@
             tabbtns[i].classList.remove("active");
             tabbtns[i].setAttribute("aria-selected", "false");
         }
-        document.getElementById(dayName).classList.add("active");
-        evt.currentTarget.classList.add("active");
-        evt.currentTarget.setAttribute("aria-selected", "true");
+        var pane = document.getElementById(dayName);
+        var btn = document.getElementById("tab-" + dayName);
+        if (pane) pane.classList.add("active");
+        if (btn) {
+            btn.classList.add("active");
+            btn.setAttribute("aria-selected", "true");
+        }
     }
+
+    function openTab(evt, dayName) {
+        activateTab(dayName);
+    }
+
+    // 1b. 自動跳到「今天」對應的分頁（旅程期間打開時）
+    (function jumpToToday() {
+        var map = {
+            "2026-6-11": "day1",
+            "2026-6-12": "day2",
+            "2026-6-13": "day3",
+            "2026-6-14": "day4"
+        };
+        var now = new Date();
+        var key = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+        if (map[key]) activateTab(map[key]);
+    })();
 
     // 2. 倒數計時器設定 
     // 目標日期 1：出發時間 (2026年06月11日 00:00:00，香港/台灣時區 +08:00)
@@ -704,12 +852,52 @@
 	const allTasks = document.querySelectorAll('.clickable-task');
 	const progressLabel = document.getElementById('progress-label');
 	const progressFill = document.getElementById('progress-fill');
+	let pageReady = false;   // 初始化期間不觸發慶祝
+	let hasCelebrated = false;
 	function updateProgress() {
 	    const total = allTasks.length;
 	    const done = document.querySelectorAll('.clickable-task.completed-task').length;
 	    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
 	    progressLabel.textContent = `🏁 行程打卡進度：${done} / ${total}　(${pct}%)`;
 	    progressFill.style.width = pct + '%';
+
+	    // 全部完成時的慶祝效果（僅在使用者操作後、且為首次達標時觸發）
+	    if (total > 0 && done === total) {
+	        if (pageReady && !hasCelebrated) {
+	            hasCelebrated = true;
+	            celebrate();
+	        }
+	    } else {
+	        hasCelebrated = false; // 又有未完成項目，重置以便下次再達標時慶祝
+	    }
+	}
+
+	// 慶祝：彩帶 + 祝賀訊息
+	function celebrate() {
+	    var toast = document.createElement('div');
+	    toast.className = 'celebrate-toast';
+	    toast.textContent = '🎉 旅程圓滿完成！希望一家人都留下滿滿美好回憶 🇭🇰';
+	    document.body.appendChild(toast);
+	    requestAnimationFrame(function() { toast.classList.add('show'); });
+	    setTimeout(function() { toast.classList.remove('show'); }, 4000);
+	    setTimeout(function() { toast.remove(); }, 4600);
+
+	    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	        var emojis = ['🎉', '✨', '🎊', '🇭🇰', '⭐'];
+	        for (var i = 0; i < 40; i++) {
+	            (function() {
+	                var p = document.createElement('div');
+	                p.className = 'confetti-piece';
+	                p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+	                p.style.left = (Math.random() * 100) + 'vw';
+	                p.style.fontSize = (16 + Math.random() * 18) + 'px';
+	                p.style.animationDuration = (2.5 + Math.random() * 2) + 's';
+	                p.style.animationDelay = (Math.random() * 0.6) + 's';
+	                document.body.appendChild(p);
+	                setTimeout(function() { p.remove(); }, 5500);
+	            })();
+	        }
+	    }
 	}
 
 document.querySelectorAll('.clickable-task').forEach((task, index) => {
@@ -755,6 +943,37 @@ document.querySelectorAll('.clickable-task').forEach((task, index) => {
 
 // 全部初始化完成後，更新一次總進度
 updateProgress();
+pageReady = true;   // 之後使用者打卡達 100% 才會觸發慶祝
+
+// 行前打包清單：勾選狀態存於本機
+document.querySelectorAll('#packing-list input[type="checkbox"]').forEach(function(box) {
+    var label = box.closest('.pack-item');
+    var key = 'pack_' + box.dataset.pack;
+    function render() {
+        label.classList.toggle('packed', box.checked);
+    }
+    // 讀取歷史紀錄
+    box.checked = (localStorage.getItem(key) === '1');
+    render();
+    box.addEventListener('change', function() {
+        if (box.checked) {
+            localStorage.setItem(key, '1');
+        } else {
+            localStorage.removeItem(key);
+        }
+        render();
+    });
+});
+
+// 註冊 Service Worker（離線可用）。注意：僅在以 https 或 localhost 開啟時才會生效，
+// 直接用瀏覽器開本機檔案 (file://) 不會註冊。
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js').catch(function(err) {
+            console.log('Service Worker 註冊未啟用：', err);
+        });
+    });
+}
 </script>
 
 </body>
