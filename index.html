@@ -323,22 +323,22 @@
         </div>
     </div>
 
-    <div class="tabs-nav">
-        <button class="tab-btn active" onclick="openTab(event, 'day1')"><span class="hk-day-icon icon-red">🚇</span> Day 1<br>(06/11)</button>
-        <button class="tab-btn" onclick="openTab(event, 'day2')"><span class="hk-day-icon icon-green">🏰</span> Day 2<br>(06/12)</button>
-        <button class="tab-btn" onclick="openTab(event, 'day3')"><span class="hk-day-icon icon-red">⭐</span> Day 3<br>(06/13)</button>
-        <button class="tab-btn" onclick="openTab(event, 'day4')"><span class="hk-day-icon icon-green">🛍️</span> Day 4<br>(06/14)</button>
+    <div class="tabs-nav" role="tablist" aria-label="每日行程">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="day1" onclick="openTab(event, 'day1')"><span class="hk-day-icon icon-red">🚇</span> Day 1<br>(06/11)</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="day2" onclick="openTab(event, 'day2')"><span class="hk-day-icon icon-green">🏰</span> Day 2<br>(06/12)</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="day3" onclick="openTab(event, 'day3')"><span class="hk-day-icon icon-red">⭐</span> Day 3<br>(06/13)</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="day4" onclick="openTab(event, 'day4')"><span class="hk-day-icon icon-green">🛍️</span> Day 4<br>(06/14)</button>
     </div>
 
-    <div id="day1" class="tab-pane active">
+    <div id="day1" class="tab-pane active" role="tabpanel">
         <h2 class="pane-title">🚇 Day 1：抵達香港、黃大仙與城寨探秘</h2>
         <p>帶著期待的心情抵達香港，辦理入住後，前往香火鼎盛的黃大仙祈福，再到充滿傳奇色彩的九龍城寨公園感受歷史與江南園林的交錯。</p>
         <ul>
-            <li class="clickable-task">✈️ <strong>航班資訊：</strong> 10:25 台中 (RMQ) 起飛 ➔ 12:10 抵達香港 (HKG)。</li>
-            <li class="clickable-task">🏨 前往「荃灣帝景酒店 (Royal View Hotel)」辦理入住手續並放置行李。<a href="https://www.google.com/maps/search/?api=1&query=荃灣帝景酒店" target="_blank" class="nav-btn">📍 導航至酒店</a></li>
-            <li class="clickable-task">⛩️ <strong>下午：</strong> 出發前往香火鼎盛的「黃大仙祠」參拜祈福，體驗特有的求籤文化。<a href="https://www.google.com/maps/search/?api=1&query=蘭芳園+中環2" target="_blank" class="nav-btn">📍 導航至黃大仙</a></li>
-            <li class="clickable-task">🏯 <strong>傍晚：</strong> 轉往「九龍寨城公園」，漫步於昔日「三不管」地帶的遺址。<a href="https://www.google.com/maps/search/?api=1&query=九龍寨城公園" target="_blank" class="nav-btn">📍 導航至城寨公園</a></li>
-            <li class="clickable-task">🍽️ <strong>晚餐：</strong> 於九龍城周邊享用道地的泰國菜或港式糖水（如：地茂館甜品），再返回酒店休息。</li>
+            <li class="clickable-task" data-id="d1-1">✈️ <strong>航班資訊：</strong> 10:25 台中 (RMQ) 起飛 ➔ 12:10 抵達香港 (HKG)。</li>
+            <li class="clickable-task" data-id="d1-2">🏨 前往「荃灣帝景酒店 (Royal View Hotel)」辦理入住手續並放置行李。<a href="https://www.google.com/maps/search/?api=1&query=荃灣帝景酒店" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至酒店</a></li>
+            <li class="clickable-task" data-id="d1-3">⛩️ <strong>下午：</strong> 出發前往香火鼎盛的「黃大仙祠」參拜祈福，體驗特有的求籤文化。<a href="https://www.google.com/maps/search/?api=1&query=黃大仙祠" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至黃大仙</a></li>
+            <li class="clickable-task" data-id="d1-4">🏯 <strong>傍晚：</strong> 轉往「九龍寨城公園」，漫步於昔日「三不管」地帶的遺址。<a href="https://www.google.com/maps/search/?api=1&query=九龍寨城公園" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至城寨公園</a></li>
+            <li class="clickable-task" data-id="d1-5">🍽️ <strong>晚餐：</strong> 於九龍城周邊享用道地的泰國菜或港式糖水（如：地茂館甜品），再返回酒店休息。</li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：機場 ➔ 帝景酒店 ➔ 黃大仙 ➔ 九龍城寨</strong></p>
@@ -347,30 +347,30 @@
         </div>
     </div>
 
-    <div id="day2" class="tab-pane">
+    <div id="day2" class="tab-pane" role="tabpanel">
         <h2 class="pane-title">🏰 Day 2：沉浸童話世界與巨星夜景</h2>
         <p>全日暢遊香港迪士尼樂園，享受充滿歡樂的家庭時光！</p>
         <ul>
-            <li class="clickable-task">🎟️ <strong>09:00：</strong> 抵達樂園，準備準時入園！<a href="https://www.google.com/maps/search/?api=1&query=香港迪士尼樂園" target="_blank" class="nav-btn">📍 導航至園區</a></li>
-            <li class="clickable-task">❄️ <strong>上午：</strong> 避開人潮，直奔目前最具人氣的「魔雪奇緣世界」。</li>
-            <li class="clickable-task">👯‍♀️ <strong>下午：</strong> 佔好位置，觀賞精彩歡樂的「花車巡遊」。</li>
-            <li class="clickable-task">🎆 <strong>晚上：</strong> 留在園區欣賞絢麗的「星夢光影之旅」夜間煙火秀。</li>
+            <li class="clickable-task" data-id="d2-1">🎟️ <strong>09:00：</strong> 抵達樂園，準備準時入園！<a href="https://www.google.com/maps/search/?api=1&query=香港迪士尼樂園" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至園區</a></li>
+            <li class="clickable-task" data-id="d2-2">❄️ <strong>上午：</strong> 避開人潮，直奔目前最具人氣的「魔雪奇緣世界」。</li>
+            <li class="clickable-task" data-id="d2-3">👯‍♀️ <strong>下午：</strong> 佔好位置，觀賞精彩歡樂的「花車巡遊」。</li>
+            <li class="clickable-task" data-id="d2-4">🎆 <strong>晚上：</strong> 留在園區欣賞絢麗的「星夢光影之旅」夜間煙火秀。</li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：帝景酒店 ➔ 迪士尼</strong></p>
-            <p><strong>去程：</strong> 搭乘「酒店免費接駁車」或 234B 巴士至 <span class="highlight">荃灣站 / 荃灣西站</span>，轉乘港鐵（荃灣綫 ➔ 荔景站轉東涌綫 ➔ 欣澳站轉迪士尼綫）即可抵達。<a href="https://www.google.com/maps/search/?api=1&query=迪士尼站" target="_blank" class="nav-btn">📍 導航至迪士尼站</a></p>
+            <p><strong>去程：</strong> 搭乘「酒店免費接駁車」或 234B 巴士至 <span class="highlight">荃灣站 / 荃灣西站</span>，轉乘港鐵（荃灣綫 ➔ 荔景站轉東涌綫 ➔ 欣澳站轉迪士尼綫）即可抵達。<a href="https://www.google.com/maps/search/?api=1&query=迪士尼站" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至迪士尼站</a></p>
             <p><strong>回程與建議：</strong> 煙火結束後通常較晚，若一家人玩得較為疲累，強烈建議直接從迪士尼搭乘計程車回帝景酒店（車程約20分鐘），花點小錢換取舒適。</p>
         </div>
     </div>
 
-    <div id="day3" class="tab-pane">
+    <div id="day3" class="tab-pane" role="tabpanel">
         <h2 class="pane-title">⭐ Day 3：寓教於樂、維港風情與廟街夜市</h2>
         <p>橫跨九龍與港島，體驗最經典的香港在地文化與百萬夜景。</p>
         <ul>
-            <li class="clickable-task">🔬 <strong>上午：</strong> 前往「香港科學館」，體驗豐富的互動設施。<a href="https://www.google.com/maps/search/?api=1&query=香港科學館" target="_blank" class="nav-btn">📍 導航至科學館</a></li>
-            <li class="clickable-task">⛴️ <strong>下午：</strong> 搭乘經典「天星小輪」過海至中環。<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀天星碼頭" target="_blank" class="nav-btn">📍 導航至碼頭</a>體驗「半山扶手電梯」<a href="https://www.google.com/maps/search/?api=1&query=中環半山扶手電梯" target="_blank" class="nav-btn">📍 導航</a>，品嚐「蘭芳園」絲襪奶茶與奶油豬。<a href="https://www.google.com/maps/search/?api=1&query=蘭芳園中環總店" target="_blank" class="nav-btn">📍 導航至蘭芳園</a>搭乘「山頂纜車」上太平山。<a href="https://www.google.com/maps/search/?api=1&query=山頂纜車" target="_blank" class="nav-btn">📍 導航至纜車站</a></li>
-            <li class="clickable-task">👵🏼 <strong>傍晚：</strong> 前往銅鑼灣鵝頸橋底，體驗獨特的「打小人」文化。<a href="https://www.google.com/maps/search/?api=1&query=鵝頸橋打小人" target="_blank" class="nav-btn">📍 導航至鵝頸橋</a></li>
-            <li class="clickable-task">🌌 <strong>晚上：</strong> 20:00 於尖沙咀觀賞「幻彩詠香江」<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀海濱長廊" target="_blank" class="nav-btn">📍 導航</a>。最後至「廟街夜市」品嚐興記煲仔飯。<a href="https://www.google.com/maps/search/?api=1&query=廟街興記煲仔飯" target="_blank" class="nav-btn">📍 導航至興記</a></li>
+            <li class="clickable-task" data-id="d3-1">🔬 <strong>上午：</strong> 前往「香港科學館」，體驗豐富的互動設施。<a href="https://www.google.com/maps/search/?api=1&query=香港科學館" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至科學館</a></li>
+            <li class="clickable-task" data-id="d3-2">⛴️ <strong>下午：</strong> 搭乘經典「天星小輪」過海至中環。<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀天星碼頭" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至碼頭</a>體驗「半山扶手電梯」<a href="https://www.google.com/maps/search/?api=1&query=中環半山扶手電梯" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a>，品嚐「蘭芳園」絲襪奶茶與奶油豬。<a href="https://www.google.com/maps/search/?api=1&query=蘭芳園中環總店" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至蘭芳園</a>搭乘「山頂纜車」上太平山。<a href="https://www.google.com/maps/search/?api=1&query=山頂纜車" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至纜車站</a></li>
+            <li class="clickable-task" data-id="d3-3">👵🏼 <strong>傍晚：</strong> 前往銅鑼灣鵝頸橋底，體驗獨特的「打小人」文化。<a href="https://www.google.com/maps/search/?api=1&query=鵝頸橋打小人" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至鵝頸橋</a></li>
+            <li class="clickable-task" data-id="d3-4">🌌 <strong>晚上：</strong> 20:00 於尖沙咀觀賞「幻彩詠香江」<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀海濱長廊" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a>。最後至「廟街夜市」品嚐興記煲仔飯。<a href="https://www.google.com/maps/search/?api=1&query=廟街興記煲仔飯" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至興記</a></li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：九龍港島走透透</strong></p>
@@ -380,19 +380,19 @@
         </div>
     </div>
 
-    <div id="day4" class="tab-pane">
+    <div id="day4" class="tab-pane" role="tabpanel">
         <h2 class="pane-title">🛍️ Day 4：昂坪纜車、東薈城與賦歸</h2>
         <p>把握最後時光，體驗高空纜車的壯麗，並完成伴手禮採購。</p>
         <ul>
-            <li class="clickable-task">🥢 <strong>上午：</strong> 辦理退房，前往荃灣市區找間茶樓體驗傳統「一盅兩件」港式早茶。</li>
-            <li class="clickable-task">🚠 <strong>近午：</strong> 前往東涌搭乘「昂坪360纜車」，從高空俯瞰大嶼山壯麗景色與天壇大佛。<a href="https://www.google.com/maps/search/?api=1&query=昂坪360東涌站" target="_blank" class="nav-btn">📍 導航至纜車站</a></li>
-            <li class="clickable-task">🛒 <strong>下午：</strong> 回到起點的「東薈城名店倉 (Citygate Outlets)」進行最後血拼與享用晚餐。<a href="https://www.google.com/maps/search/?api=1&query=東薈城名店倉" target="_blank" class="nav-btn">📍 導航至東薈城</a></li>
-            <li class="clickable-task">✈️ <strong>航班資訊：</strong> 18:15 香港 (HKG) 起飛 ➔ 19:55 抵達台中 (RMQ)。帶著滿滿回憶，平安返家！</li>
+            <li class="clickable-task" data-id="d4-1">🥢 <strong>上午：</strong> 辦理退房，前往荃灣市區找間茶樓體驗傳統「一盅兩件」港式早茶。</li>
+            <li class="clickable-task" data-id="d4-2">🚠 <strong>近午：</strong> 前往東涌搭乘「昂坪360纜車」，從高空俯瞰大嶼山壯麗景色與天壇大佛。<a href="https://www.google.com/maps/search/?api=1&query=昂坪360東涌站" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至纜車站</a></li>
+            <li class="clickable-task" data-id="d4-3">🛒 <strong>下午：</strong> 回到起點的「東薈城名店倉 (Citygate Outlets)」進行最後血拼與享用晚餐。<a href="https://www.google.com/maps/search/?api=1&query=東薈城名店倉" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至東薈城</a></li>
+            <li class="clickable-task" data-id="d4-4">✈️ <strong>航班資訊：</strong> 18:15 香港 (HKG) 起飛 ➔ 19:55 抵達台中 (RMQ)。帶著滿滿回憶，平安返家！</li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：帝景酒店 ➔ 東涌 (昂坪/東薈城) ➔ 機場</strong></p>
             <p><strong>前往東涌：</strong> 搭乘酒店接駁車至荃灣市區，搭乘港鐵 (荃灣站 ➔ 荔景站轉東涌綫 ➔ 直達 <span class="highlight">東涌站</span>)。昂坪纜車站與東薈城皆在東涌站旁步行範圍內。</p>
-            <p><strong>最佳建議 (東涌至機場)：</strong> 行程結束後 <span class="highlight">不建議搭港鐵</span>。請直接在東涌站旁的巴士總站搭乘 <strong>S1 循環線公車</strong>，約 15 分鐘即可直達機場，方便又便宜！<a href="https://www.google.com/maps/search/?api=1&query=東涌站巴士總站" target="_blank" class="nav-btn">📍 導航至S1巴士站</a></p>
+            <p><strong>最佳建議 (東涌至機場)：</strong> 行程結束後 <span class="highlight">不建議搭港鐵</span>。請直接在東涌站旁的巴士總站搭乘 <strong>S1 循環線公車</strong>，約 15 分鐘即可直達機場，方便又便宜！<a href="https://www.google.com/maps/search/?api=1&query=東涌站巴士總站" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至S1巴士站</a></p>
         </div>
     </div>
 
@@ -409,16 +409,18 @@
         tabbtns = document.getElementsByClassName("tab-btn");
         for (i = 0; i < tabbtns.length; i++) {
             tabbtns[i].classList.remove("active");
+            tabbtns[i].setAttribute("aria-selected", "false");
         }
         document.getElementById(dayName).classList.add("active");
         evt.currentTarget.classList.add("active");
+        evt.currentTarget.setAttribute("aria-selected", "true");
     }
 
     // 2. 倒數計時器設定 
     // 目標日期 1：出發時間 (2026年06月11日 00:00:00)
-    var startDate = new Date("Jun 11, 2026 00:00:00").getTime();
+    var startDate = new Date("2026-06-11T10:25:00").getTime();
     // 目標日期 2：行程結束時間，以抵達台中班機為準 (2026年06月14日 19:55:00)
-    var endDate = new Date("Jun 14, 2026 19:55:00").getTime();
+    var endDate = new Date("2026-06-14T19:55:00").getTime();
 
     var x = setInterval(function() {
         var now = new Date().getTime();
@@ -494,6 +496,16 @@
     const twdResult = document.getElementById('twd-result');
     const rateInfo = document.getElementById('rate-info');
 
+    // 依目前匯率與輸入框的值，重新計算並顯示台幣金額
+    function renderConversion() {
+        let hkdValue = parseFloat(hkdInput.value);
+        if (!isNaN(hkdValue) && hkdValue >= 0) {
+            twdResult.textContent = Math.round(hkdValue * currentRate);
+        } else {
+            twdResult.textContent = '0';
+        }
+    }
+
     async function fetchExchangeRate() {
         try {
             // 使用開源免費的匯率 API (免金鑰)
@@ -502,40 +514,54 @@
             
             if (data && data.rates && data.rates.TWD) {
                 currentRate = data.rates.TWD;
-                rateInfo.innerHTML = `(匯率: ${currentRate.toFixed(2)})`;
+                rateInfo.textContent = `(匯率: ${currentRate.toFixed(2)})`;
+                // 匯率載入完成後，立即用新匯率重新換算使用者已輸入的金額
+                renderConversion();
             }
         } catch (error) {
-            rateInfo.innerHTML = `(預估匯率: ${currentRate})`;
+            rateInfo.textContent = `(預估匯率: ${currentRate})`;
             console.error("匯率獲取失敗，使用預設值", error);
         }
     }
     
-    hkdInput.addEventListener('input', function(e) {
-        let hkdValue = parseFloat(e.target.value);
-        if (!isNaN(hkdValue) && hkdValue >= 0) {
-            let twdValue = Math.round(hkdValue * currentRate);
-            twdResult.innerHTML = twdValue;
-        } else {
-            twdResult.innerHTML = '0';
-        }
-    });
+    hkdInput.addEventListener('input', renderConversion);
 
     fetchExchangeRate();
 	
 	// 行程打卡與狀態保存功能
 document.querySelectorAll('.clickable-task').forEach((task, index) => {
-    // 讀取歷史紀錄
-    if (localStorage.getItem('task_' + index) === 'done') {
-        task.classList.add('completed-task');
-    }
-    
-    // 點擊切換狀態
-    task.addEventListener('click', function() {
-        this.classList.toggle('completed-task');
-        if (this.classList.contains('completed-task')) {
-            localStorage.setItem('task_' + index, 'done');
+    // 以穩定的 data-id 當作儲存鍵值；若缺少則退回使用索引（向下相容）
+    const key = 'task_' + (task.dataset.id || index);
+
+    // 讓項目可用鍵盤聚焦與操作，並讓輔助科技知道它是可切換的按鈕
+    task.setAttribute('role', 'button');
+    task.setAttribute('tabindex', '0');
+
+    function setDone(done) {
+        task.classList.toggle('completed-task', done);
+        task.setAttribute('aria-pressed', done ? 'true' : 'false');
+        if (done) {
+            localStorage.setItem(key, 'done');
         } else {
-            localStorage.removeItem('task_' + index);
+            localStorage.removeItem(key);
+        }
+    }
+
+    // 讀取歷史紀錄
+    setDone(localStorage.getItem(key) === 'done');
+
+    function toggle() {
+        setDone(!task.classList.contains('completed-task'));
+    }
+
+    // 滑鼠點擊切換狀態
+    task.addEventListener('click', toggle);
+
+    // 鍵盤支援：Enter 或空白鍵切換（避免空白鍵捲動頁面）
+    task.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
         }
     });
 });
