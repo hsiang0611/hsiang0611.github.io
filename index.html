@@ -400,22 +400,55 @@
         evt.currentTarget.classList.add("active");
     }
 
-    // 2. 倒數計時器設定 (目標日期：2026年06月11日 00:00:00)
-    var countDownDate = new Date("Jun 11, 2026 00:00:00").getTime();
+    // 2. 倒數計時器設定 
+    // 目標日期 1：出發時間 (2026年06月11日 00:00:00)
+    var startDate = new Date("Jun 11, 2026 00:00:00").getTime();
+    // 目標日期 2：行程結束時間，以抵達台中班機為準 (2026年06月14日 19:55:00)
+    var endDate = new Date("Jun 14, 2026 19:55:00").getTime();
+
     var x = setInterval(function() {
         var now = new Date().getTime();
-        var distance = countDownDate - now;
+        
+        // 判斷目前的時間狀態
+        var isStarted = now >= startDate;
+        var isEnded = now >= endDate;
+        
+        var distance;
+        var prefixText = "";
+        
+        if (!isStarted) {
+            // 狀態 A：還沒出發，倒數至出發時間
+            distance = startDate - now;
+            prefixText = "⏳ 出發倒數： ";
+            
+            // 將框線與文字設定為紅色系 (對應 CSS 的 countdown-box)
+            document.getElementById("countdown").className = "info-box countdown-box";
+            
+        } else if (!isEnded) {
+            // 狀態 B：旅程進行中，倒數至結束時間
+            distance = endDate - now;
+            prefixText = "🇭🇰 旅程進行中！距離回程還有： ";
+            
+            // 旅程中可以動態把樣式改成綠色系 (對應 CSS 的 weather-box)
+            document.getElementById("countdown").className = "info-box weather-box";
+            
+        } else {
+            // 狀態 C：旅程已結束
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "🛬 歡迎回家！希望一家人都有滿滿的美好回憶！";
+            document.getElementById("countdown").className = "info-box currency-box"; // 換成金色系
+            return; // 結束函式執行
+        }
+        
+        // 計算天、時、分、秒
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
-        document.getElementById("countdown").innerHTML = "⏳ 出發倒數： " + days + "天 " + hours + "時 " + minutes + "分 " + seconds + "秒 ";
+        // 輸出結果
+        document.getElementById("countdown").innerHTML = prefixText + days + "天 " + hours + "時 " + minutes + "分 " + seconds + "秒 ";
         
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("countdown").innerHTML = "🎉 旅程開始囉！祝義翔一家玩得開心！";
-        }
     }, 1000);
 
     // 3. 獲取香港即時天氣 
