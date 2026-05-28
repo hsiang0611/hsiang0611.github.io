@@ -58,12 +58,39 @@
             font-size: 18px;
         }
 
+        /* 專屬 AI 畫布樣式 */
+.hero-image-container {
+    width: 100%;
+    max-width: 600px;
+    height: 250px;
+    margin: 25px auto 10px auto;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color), 0 0 15px inset rgba(0, 255, 127, 0.2);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 255, 127, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.hero-image-container:hover {
+    box-shadow: 0 0 20px var(--primary-color), 0 0 20px inset rgba(0, 255, 127, 0.4);
+}
+
+.hero-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
         .info-container {
             display: flex;
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .info-box {
@@ -152,7 +179,7 @@
         }
 
         .tab-btn.active {
-            background-color: rgba(0, 255, 127, 0.1); /* 霓虹綠底 */
+            background-color: rgba(0, 255, 127, 0.1); 
             color: var(--primary-color);
             border-color: var(--primary-color);
             box-shadow: 0 0 10px inset var(--primary-color), 0 0 10px var(--primary-color);
@@ -171,7 +198,7 @@
 
         .tab-pane.active {
             display: block;
-            border-color: var(--primary-color); /* 搭配啟用的頁籤邊框 */
+            border-color: var(--primary-color); 
             box-shadow: 0 0 8px var(--primary-color);
         }
 
@@ -266,6 +293,10 @@
         <h1>✨ 義翔一家的香港四天三夜奇妙之旅</h1>
         <p>童話世界 ✕ 維港風情 ✕ 在地美食 專屬行程指南</p>
         
+        <div class="hero-image-container">
+    <img id="ai-hero-image" src="image01.jpg" alt="一家人的專屬AI插圖">
+</div>
+
         <div class="info-container">
             <div id="countdown" class="info-box countdown-box">⏳ 倒數計時載入中...</div>
             <div id="weather" class="info-box weather-box">🌤️ 香港即時天氣載入中...</div>
@@ -356,20 +387,15 @@
 <script>
     // 1. 頁籤 (Tabs) 切換功能
     function openTab(evt, dayName) {
-        // 隱藏所有 tab-pane
         var i, tabpanes, tabbtns;
         tabpanes = document.getElementsByClassName("tab-pane");
         for (i = 0; i < tabpanes.length; i++) {
             tabpanes[i].classList.remove("active");
         }
-        
-        // 移除所有按鈕的 active 狀態
         tabbtns = document.getElementsByClassName("tab-btn");
         for (i = 0; i < tabbtns.length; i++) {
             tabbtns[i].classList.remove("active");
         }
-        
-        // 顯示目標頁籤並加上 active 狀態
         document.getElementById(dayName).classList.add("active");
         evt.currentTarget.classList.add("active");
     }
