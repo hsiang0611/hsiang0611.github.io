@@ -299,6 +299,85 @@
             box-shadow: 0 0 8px var(--primary-color);
             text-shadow: none;
         }
+
+        /* 打卡進度條 */
+        .progress-wrap {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            text-align: center;
+        }
+        .progress-label {
+            color: var(--gold);
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 0 0 4px var(--gold);
+        }
+        .progress-track {
+            height: 14px;
+            background-color: rgba(255,255,255,0.08);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 5px inset rgba(0,0,0,0.4);
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold), var(--primary-color));
+            box-shadow: 0 0 10px var(--primary-color);
+            transition: width 0.4s ease;
+        }
+
+        /* 四天天氣預報 */
+        .forecast-wrap {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+        .forecast-title {
+            color: var(--primary-color);
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 0 0 4px var(--primary-color);
+        }
+        .forecast-grid {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .forecast-card {
+            flex: 1;
+            min-width: 110px;
+            background-color: rgba(0, 255, 127, 0.06);
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 6px rgba(0,255,127,0.3);
+            padding: 12px 8px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .forecast-card .fc-date { font-size: 13px; color: #b0afab; }
+        .forecast-card .fc-icon { font-size: 28px; margin: 6px 0; }
+        .forecast-card .fc-temp { font-size: 16px; font-weight: bold; color: var(--text-color); }
+        .forecast-card .fc-temp .lo { color: var(--neon-blue); }
+        .forecast-card .fc-temp .hi { color: var(--neon-red); }
+        .forecast-card .fc-rain { font-size: 12px; color: var(--primary-color); margin-top: 4px; }
+
+        /* 頁尾版權宣告 */
+        .site-footer {
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            padding: 20px 15px;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.8;
+            color: #6f7785;
+            border-top: 1px dashed #333;
+        }
+        .site-footer a { color: #8a93a3; text-decoration: none; }
+        .site-footer a:hover { color: var(--primary-color); }
     </style>
 </head>
 <body>
@@ -321,7 +400,24 @@
                 = NT$ <span id="twd-result" class="highlight-twd">0</span>
                 <span id="rate-info" class="rate-hint">(載入匯率中...)</span>
             </div>
+            <div class="info-box currency-box">
+                🔁 NT$ 
+                <input type="number" id="twd-input" class="currency-input" placeholder="金額" min="0">
+                = HK$ <span id="hkd-result" class="highlight-twd">0</span>
+            </div>
         </div>
+    </div>
+
+    <div class="forecast-wrap">
+        <div class="forecast-title">🌦️ 旅遊期間天氣預報 (6/11 – 6/14)</div>
+        <div id="forecast-grid" class="forecast-grid">
+            <div class="forecast-card"><div class="fc-date">載入中...</div></div>
+        </div>
+    </div>
+
+    <div class="progress-wrap">
+        <div id="progress-label" class="progress-label">🏁 行程打卡進度：0 / 0</div>
+        <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
     </div>
 
     <div class="tabs-nav" role="tablist" aria-label="每日行程">
@@ -398,6 +494,11 @@
     </div>
 
 </div>
+
+<footer class="site-footer">
+    <p>© 2026 義翔一家專屬香港行程 · 僅供家庭旅遊參考，行程與資訊請以現場實際狀況為準。</p>
+    <p>天氣資料由 <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> 提供 · 匯率資料由 <a href="https://www.exchangerate-api.com/" target="_blank" rel="noopener noreferrer">ExchangeRate-API</a> 提供 · 地圖導航由 Google Maps 提供。</p>
+</footer>
 
 <script>
     // 1. 頁籤 (Tabs) 切換功能
@@ -493,19 +594,31 @@
     }
     fetchWeather();
 
-    // 4. 即時匯率換算器 (港幣轉台幣)
-    let currentRate = 4.15; // 設定離線時的預設匯率估值
+    // 4. 即時匯率換算器 (港幣 ⇄ 台幣)
+    let currentRate = 4.15; // 設定離線時的預設匯率估值 (1 HKD = ? TWD)
     const hkdInput = document.getElementById('hkd-input');
     const twdResult = document.getElementById('twd-result');
     const rateInfo = document.getElementById('rate-info');
+    const twdInput = document.getElementById('twd-input');
+    const hkdResult = document.getElementById('hkd-result');
 
-    // 依目前匯率與輸入框的值，重新計算並顯示台幣金額
+    // 港幣 → 台幣
     function renderConversion() {
         let hkdValue = parseFloat(hkdInput.value);
         if (!isNaN(hkdValue) && hkdValue >= 0) {
             twdResult.textContent = Math.round(hkdValue * currentRate);
         } else {
             twdResult.textContent = '0';
+        }
+    }
+
+    // 台幣 → 港幣 (反向)
+    function renderReverseConversion() {
+        let twdValue = parseFloat(twdInput.value);
+        if (!isNaN(twdValue) && twdValue >= 0 && currentRate > 0) {
+            hkdResult.textContent = Math.round(twdValue / currentRate);
+        } else {
+            hkdResult.textContent = '0';
         }
     }
 
@@ -518,8 +631,9 @@
             if (data && data.rates && data.rates.TWD) {
                 currentRate = data.rates.TWD;
                 rateInfo.textContent = `(匯率: ${currentRate.toFixed(2)})`;
-                // 匯率載入完成後，立即用新匯率重新換算使用者已輸入的金額
+                // 匯率載入完成後，立即用新匯率重新換算兩個方向已輸入的金額
                 renderConversion();
+                renderReverseConversion();
             }
         } catch (error) {
             rateInfo.textContent = `(預估匯率: ${currentRate})`;
@@ -528,10 +642,76 @@
     }
     
     hkdInput.addEventListener('input', renderConversion);
+    twdInput.addEventListener('input', renderReverseConversion);
 
     fetchExchangeRate();
+
+    // 5. 旅遊四天天氣預報 (6/11 – 6/14)
+    async function fetchForecast() {
+        const grid = document.getElementById('forecast-grid');
+        const weekday = ['日', '一', '二', '三', '四', '五', '六'];
+        const iconOf = (code) => {
+            if (code === 0) return '☀️';
+            if (code >= 1 && code <= 3) return '⛅';
+            if (code >= 45 && code <= 48) return '🌫️';
+            if (code >= 51 && code <= 67) return '🌧️';
+            if (code >= 71 && code <= 77) return '❄️';
+            if (code >= 80 && code <= 82) return '🌦️';
+            if (code >= 95) return '⛈️';
+            return '☁️';
+        };
+        try {
+            const url = 'https://api.open-meteo.com/v1/forecast'
+                + '?latitude=22.2783&longitude=114.1747'
+                + '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
+                + '&timezone=Asia%2FHong_Kong&start_date=2026-06-11&end_date=2026-06-14';
+            const res = await fetch(url);
+            const data = await res.json();
+            const d = data.daily;
+            if (!d || !d.time || d.time.length === 0) throw new Error('no data');
+
+            let html = '';
+            for (let i = 0; i < d.time.length; i++) {
+                const dt = new Date(d.time[i] + 'T00:00:00+08:00');
+                const dateLabel = (dt.getMonth() + 1) + '/' + dt.getDate() + ' (' + weekday[dt.getDay()] + ')';
+                const hi = d.temperature_2m_max[i];
+                const lo = d.temperature_2m_min[i];
+                // 預報尚未開放的日期，API 會回傳 null
+                if (hi == null || lo == null) {
+                    html += `<div class="forecast-card"><div class="fc-date">${dateLabel}</div>`
+                        + `<div class="fc-icon">🗓️</div><div class="fc-temp">預報尚未開放</div></div>`;
+                    continue;
+                }
+                const rain = d.precipitation_probability_max ? d.precipitation_probability_max[i] : null;
+                html += `<div class="forecast-card">`
+                    + `<div class="fc-date">${dateLabel}</div>`
+                    + `<div class="fc-icon">${iconOf(d.weather_code[i])}</div>`
+                    + `<div class="fc-temp"><span class="lo">${Math.round(lo)}°</span> / <span class="hi">${Math.round(hi)}°</span></div>`
+                    + (rain != null ? `<div class="fc-rain">☔ 降雨 ${rain}%</div>` : '')
+                    + `</div>`;
+            }
+            grid.innerHTML = html;
+        } catch (error) {
+            grid.innerHTML = '<div class="forecast-card"><div class="fc-date">預報暫時無法取得</div>'
+                + '<div class="fc-icon">📡</div><div class="fc-temp">出發前再回來看看</div></div>';
+            console.error('天氣預報獲取失敗', error);
+        }
+    }
+    fetchForecast();
 	
 	// 行程打卡與狀態保存功能
+	// 進度條：統計所有行程的完成比例
+	const allTasks = document.querySelectorAll('.clickable-task');
+	const progressLabel = document.getElementById('progress-label');
+	const progressFill = document.getElementById('progress-fill');
+	function updateProgress() {
+	    const total = allTasks.length;
+	    const done = document.querySelectorAll('.clickable-task.completed-task').length;
+	    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+	    progressLabel.textContent = `🏁 行程打卡進度：${done} / ${total}　(${pct}%)`;
+	    progressFill.style.width = pct + '%';
+	}
+
 document.querySelectorAll('.clickable-task').forEach((task, index) => {
     // 以穩定的 data-id 當作儲存鍵值；若缺少則退回使用索引（向下相容）
     const key = 'task_' + (task.dataset.id || index);
@@ -548,6 +728,7 @@ document.querySelectorAll('.clickable-task').forEach((task, index) => {
         } else {
             localStorage.removeItem(key);
         }
+        updateProgress();
     }
 
     // 讀取歷史紀錄
@@ -571,6 +752,9 @@ document.querySelectorAll('.clickable-task').forEach((task, index) => {
         }
     });
 });
+
+// 全部初始化完成後，更新一次總進度
+updateProgress();
 </script>
 
 </body>
