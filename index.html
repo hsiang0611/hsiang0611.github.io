@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-title" content="香港之旅">
+	<link rel="apple-touch-icon" href="你的Icon圖片路徑.png">
+	
     <title>義翔一家的專屬香港旅行</title>
     <style>
         :root {
@@ -148,6 +153,15 @@
             max-width: 800px;
             margin: 0 auto;
         }
+		
+		.completed-task {
+    text-decoration: line-through;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+.clickable-task {
+    cursor: pointer;
+}
 
         /* 頁籤 (Tabs) 設計區塊 */
         .tabs-nav {
@@ -320,11 +334,11 @@
         <h2 class="pane-title">🚇 Day 1：抵達香港、黃大仙與城寨探秘</h2>
         <p>帶著期待的心情抵達香港，辦理入住後，前往香火鼎盛的黃大仙祈福，再到充滿傳奇色彩的九龍城寨公園感受歷史與江南園林的交錯。</p>
         <ul>
-            <li>✈️ <strong>航班資訊：</strong> 10:25 台中 (RMQ) 起飛 ➔ 12:10 抵達香港 (HKG)。</li>
-            <li>🏨 前往「荃灣帝景酒店 (Royal View Hotel)」辦理入住手續並放置行李。<a href="https://www.google.com/maps/search/?api=1&query=荃灣帝景酒店" target="_blank" class="nav-btn">📍 導航至酒店</a></li>
-            <li>⛩️ <strong>下午：</strong> 出發前往香火鼎盛的「黃大仙祠」參拜祈福，體驗特有的求籤文化。<a href="https://www.google.com/maps/search/?api=1&query=蘭芳園+中環2" target="_blank" class="nav-btn">📍 導航至黃大仙</a></li>
-            <li>🏯 <strong>傍晚：</strong> 轉往「九龍寨城公園」，漫步於昔日「三不管」地帶的遺址。<a href="https://www.google.com/maps/search/?api=1&query=九龍寨城公園" target="_blank" class="nav-btn">📍 導航至城寨公園</a></li>
-            <li>🍽️ <strong>晚餐：</strong> 於九龍城周邊享用道地的泰國菜或港式糖水（如：地茂館甜品），再返回酒店休息。</li>
+            <li class="clickable-task">✈️ <strong>航班資訊：</strong> 10:25 台中 (RMQ) 起飛 ➔ 12:10 抵達香港 (HKG)。</li>
+            <li class="clickable-task">🏨 前往「荃灣帝景酒店 (Royal View Hotel)」辦理入住手續並放置行李。<a href="https://www.google.com/maps/search/?api=1&query=荃灣帝景酒店" target="_blank" class="nav-btn">📍 導航至酒店</a></li>
+            <li class="clickable-task">⛩️ <strong>下午：</strong> 出發前往香火鼎盛的「黃大仙祠」參拜祈福，體驗特有的求籤文化。<a href="https://www.google.com/maps/search/?api=1&query=蘭芳園+中環2" target="_blank" class="nav-btn">📍 導航至黃大仙</a></li>
+            <li class="clickable-task">🏯 <strong>傍晚：</strong> 轉往「九龍寨城公園」，漫步於昔日「三不管」地帶的遺址。<a href="https://www.google.com/maps/search/?api=1&query=九龍寨城公園" target="_blank" class="nav-btn">📍 導航至城寨公園</a></li>
+            <li class="clickable-task">🍽️ <strong>晚餐：</strong> 於九龍城周邊享用道地的泰國菜或港式糖水（如：地茂館甜品），再返回酒店休息。</li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：機場 ➔ 帝景酒店 ➔ 黃大仙 ➔ 九龍城寨</strong></p>
@@ -337,10 +351,10 @@
         <h2 class="pane-title">🏰 Day 2：沉浸童話世界與巨星夜景</h2>
         <p>全日暢遊香港迪士尼樂園，享受充滿歡樂的家庭時光！</p>
         <ul>
-            <li>🎟️ <strong>09:00：</strong> 抵達樂園，準備準時入園！<a href="https://www.google.com/maps/search/?api=1&query=香港迪士尼樂園" target="_blank" class="nav-btn">📍 導航至園區</a></li>
-            <li>❄️ <strong>上午：</strong> 避開人潮，直奔目前最具人氣的「魔雪奇緣世界」。</li>
-            <li>👯‍♀️ <strong>下午：</strong> 佔好位置，觀賞精彩歡樂的「花車巡遊」。</li>
-            <li>🎆 <strong>晚上：</strong> 留在園區欣賞絢麗的「星夢光影之旅」夜間煙火秀。</li>
+            <li class="clickable-task">🎟️ <strong>09:00：</strong> 抵達樂園，準備準時入園！<a href="https://www.google.com/maps/search/?api=1&query=香港迪士尼樂園" target="_blank" class="nav-btn">📍 導航至園區</a></li>
+            <li class="clickable-task">❄️ <strong>上午：</strong> 避開人潮，直奔目前最具人氣的「魔雪奇緣世界」。</li>
+            <li class="clickable-task">👯‍♀️ <strong>下午：</strong> 佔好位置，觀賞精彩歡樂的「花車巡遊」。</li>
+            <li class="clickable-task">🎆 <strong>晚上：</strong> 留在園區欣賞絢麗的「星夢光影之旅」夜間煙火秀。</li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：帝景酒店 ➔ 迪士尼</strong></p>
@@ -353,10 +367,10 @@
         <h2 class="pane-title">⭐ Day 3：寓教於樂、維港風情與廟街夜市</h2>
         <p>橫跨九龍與港島，體驗最經典的香港在地文化與百萬夜景。</p>
         <ul>
-            <li>🔬 <strong>上午：</strong> 前往「香港科學館」，體驗豐富的互動設施。<a href="https://www.google.com/maps/search/?api=1&query=香港科學館" target="_blank" class="nav-btn">📍 導航至科學館</a></li>
-            <li>⛴️ <strong>下午：</strong> 搭乘經典「天星小輪」過海至中環。<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀天星碼頭" target="_blank" class="nav-btn">📍 導航至碼頭</a>體驗「半山扶手電梯」<a href="https://www.google.com/maps/search/?api=1&query=中環半山扶手電梯" target="_blank" class="nav-btn">📍 導航</a>，品嚐「蘭芳園」絲襪奶茶與奶油豬。<a href="https://www.google.com/maps/search/?api=1&query=蘭芳園中環總店" target="_blank" class="nav-btn">📍 導航至蘭芳園</a>搭乘「山頂纜車」上太平山。<a href="https://www.google.com/maps/search/?api=1&query=山頂纜車" target="_blank" class="nav-btn">📍 導航至纜車站</a></li>
-            <li>👵🏼 <strong>傍晚：</strong> 前往銅鑼灣鵝頸橋底，體驗獨特的「打小人」文化。<a href="https://www.google.com/maps/search/?api=1&query=鵝頸橋打小人" target="_blank" class="nav-btn">📍 導航至鵝頸橋</a></li>
-            <li>🌌 <strong>晚上：</strong> 20:00 於尖沙咀觀賞「幻彩詠香江」<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀海濱長廊" target="_blank" class="nav-btn">📍 導航</a>。最後至「廟街夜市」品嚐興記煲仔飯。<a href="https://www.google.com/maps/search/?api=1&query=廟街興記煲仔飯" target="_blank" class="nav-btn">📍 導航至興記</a></li>
+            <li class="clickable-task">🔬 <strong>上午：</strong> 前往「香港科學館」，體驗豐富的互動設施。<a href="https://www.google.com/maps/search/?api=1&query=香港科學館" target="_blank" class="nav-btn">📍 導航至科學館</a></li>
+            <li class="clickable-task">⛴️ <strong>下午：</strong> 搭乘經典「天星小輪」過海至中環。<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀天星碼頭" target="_blank" class="nav-btn">📍 導航至碼頭</a>體驗「半山扶手電梯」<a href="https://www.google.com/maps/search/?api=1&query=中環半山扶手電梯" target="_blank" class="nav-btn">📍 導航</a>，品嚐「蘭芳園」絲襪奶茶與奶油豬。<a href="https://www.google.com/maps/search/?api=1&query=蘭芳園中環總店" target="_blank" class="nav-btn">📍 導航至蘭芳園</a>搭乘「山頂纜車」上太平山。<a href="https://www.google.com/maps/search/?api=1&query=山頂纜車" target="_blank" class="nav-btn">📍 導航至纜車站</a></li>
+            <li class="clickable-task">👵🏼 <strong>傍晚：</strong> 前往銅鑼灣鵝頸橋底，體驗獨特的「打小人」文化。<a href="https://www.google.com/maps/search/?api=1&query=鵝頸橋打小人" target="_blank" class="nav-btn">📍 導航至鵝頸橋</a></li>
+            <li class="clickable-task">🌌 <strong>晚上：</strong> 20:00 於尖沙咀觀賞「幻彩詠香江」<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀海濱長廊" target="_blank" class="nav-btn">📍 導航</a>。最後至「廟街夜市」品嚐興記煲仔飯。<a href="https://www.google.com/maps/search/?api=1&query=廟街興記煲仔飯" target="_blank" class="nav-btn">📍 導航至興記</a></li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：九龍港島走透透</strong></p>
@@ -370,10 +384,10 @@
         <h2 class="pane-title">🛍️ Day 4：昂坪纜車、東薈城與賦歸</h2>
         <p>把握最後時光，體驗高空纜車的壯麗，並完成伴手禮採購。</p>
         <ul>
-            <li>🥢 <strong>上午：</strong> 辦理退房，前往荃灣市區找間茶樓體驗傳統「一盅兩件」港式早茶。</li>
-            <li>🚠 <strong>近午：</strong> 前往東涌搭乘「昂坪360纜車」，從高空俯瞰大嶼山壯麗景色與天壇大佛。<a href="https://www.google.com/maps/search/?api=1&query=昂坪360東涌站" target="_blank" class="nav-btn">📍 導航至纜車站</a></li>
-            <li>🛒 <strong>下午：</strong> 回到起點的「東薈城名店倉 (Citygate Outlets)」進行最後血拼與享用晚餐。<a href="https://www.google.com/maps/search/?api=1&query=東薈城名店倉" target="_blank" class="nav-btn">📍 導航至東薈城</a></li>
-            <li>✈️ <strong>航班資訊：</strong> 18:15 香港 (HKG) 起飛 ➔ 19:55 抵達台中 (RMQ)。帶著滿滿回憶，平安返家！</li>
+            <li class="clickable-task">🥢 <strong>上午：</strong> 辦理退房，前往荃灣市區找間茶樓體驗傳統「一盅兩件」港式早茶。</li>
+            <li class="clickable-task">🚠 <strong>近午：</strong> 前往東涌搭乘「昂坪360纜車」，從高空俯瞰大嶼山壯麗景色與天壇大佛。<a href="https://www.google.com/maps/search/?api=1&query=昂坪360東涌站" target="_blank" class="nav-btn">📍 導航至纜車站</a></li>
+            <li class="clickable-task">🛒 <strong>下午：</strong> 回到起點的「東薈城名店倉 (Citygate Outlets)」進行最後血拼與享用晚餐。<a href="https://www.google.com/maps/search/?api=1&query=東薈城名店倉" target="_blank" class="nav-btn">📍 導航至東薈城</a></li>
+            <li class="clickable-task">✈️ <strong>航班資訊：</strong> 18:15 香港 (HKG) 起飛 ➔ 19:55 抵達台中 (RMQ)。帶著滿滿回憶，平安返家！</li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：帝景酒店 ➔ 東涌 (昂坪/東薈城) ➔ 機場</strong></p>
@@ -507,6 +521,24 @@
     });
 
     fetchExchangeRate();
+	
+	// 行程打卡與狀態保存功能
+document.querySelectorAll('.clickable-task').forEach((task, index) => {
+    // 讀取歷史紀錄
+    if (localStorage.getItem('task_' + index) === 'done') {
+        task.classList.add('completed-task');
+    }
+    
+    // 點擊切換狀態
+    task.addEventListener('click', function() {
+        this.classList.toggle('completed-task');
+        if (this.classList.contains('completed-task')) {
+            localStorage.setItem('task_' + index, 'done');
+        } else {
+            localStorage.removeItem('task_' + index);
+        }
+    });
+});
 </script>
 
 </body>
