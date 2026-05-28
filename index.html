@@ -3,361 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>香港4D3N // 旅遊攻略系統</title>
+    <title>義翔一家的專屬香港旅行</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Noto+Sans+TC:wght@300;500;700&display=swap');
-
         :root {
-            --bg-color: #0b0f19;
-            --panel-bg: rgba(16, 25, 43, 0.75);
-            --neon-cyan: #00f0ff;
-            --neon-blue: #0077ff;
-            --text-main: #e2e8f0;
-            --text-muted: #8b9bb4;
-            --border-glow: 0 0 10px rgba(0, 240, 255, 0.3);
+            /* 香港霓虹夜景與舊式招牌色彩系統 */
+            --bg-color: #10141f;          /* 深夜黑藍 (夜景底色) */
+            --header-bg-color: #1a1e2a;   /* 稍微淡一點的深夜藍 */
+            --text-color: #e8e6e3;        /* 淡米白 (內文) */
+            --primary-color: #00ff7f;      /* 霓虹綠 (主要互動/啟用) */
+            --neon-red: #ff073a;         /* 霓虹紅 (發光色) */
+            --neon-red-core: #ffffff;    /* 霓虹紅文字核心 (改為白色以提高清晰度) */
+            --secondary-color: #f5f1e6;   /* 舊報紙米黃 (交通框背景) */
+            --gold: #d4af37;             /* 金色 (圖示/點綴) */
+            --neon-blue: #00f;          /* 霓虹藍 (交通框邊框) */
         }
-
+        
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            /* 復古黑體與粗黑體混合，模擬舊招牌 */
+            font-family: 'Hiragino Sans GB', 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+            font-weight: 700; /* 增加字重，更有力量 */
             background-color: var(--bg-color);
-            color: var(--text-main);
+            color: var(--text-color);
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            /* 科技感網格背景 */
-            background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            background-position: center center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 850px;
-            background: var(--panel-bg);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 8px;
-            box-shadow: var(--border-glow);
-            backdrop-filter: blur(10px);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* 頂部裝飾線 */
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            padding: 30px;
+            line-height: 1.6;
         }
 
         .header {
-            padding: 25px 20px;
             text-align: center;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-            background: linear-gradient(180deg, rgba(0, 240, 255, 0.05) 0%, transparent 100%);
+            padding: 40px 20px;
+            background-color: var(--header-bg-color);
+            border-radius: 0; /* 移除圓角，更顯復古 */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+            border: 2px solid; /* 加入邊框模擬招牌框 */
+            border-image: linear-gradient(to bottom right, var(--neon-red), var(--primary-color)) 1;
         }
 
         .header h1 {
+            /* 關鍵修正：將文字主色改為白色，提高清晰度 */
+            color: var(--neon-red-core); 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 900;
+            margin: 0 0 15px 0;
+            font-size: 32px;
+            /* 保留強烈的霓虹發光效果在周圍 */
+            text-shadow:
+                0 0 2px var(--neon-red-core), /* 文字內發光 */
+                0 0 8px var(--neon-red),    /* 第一層紅色發光 */
+                0 0 15px var(--neon-red),   /* 第二層紅色發光 */
+                0 0 20px var(--neon-red);   /* 第三層遠處紅色暈染 */
+        }
+
+        .header p {
+            color: #b0afab;
             margin: 0;
-            font-family: 'Orbitron', 'Noto Sans TC', sans-serif;
-            font-size: 1.6rem;
-            color: var(--neon-cyan);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+            font-size: 18px;
         }
 
-        .header .sys-sub {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 8px;
-            letter-spacing: 1px;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .tabs {
+        .info-container {
             display: flex;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-            background-color: rgba(0, 0, 0, 0.2);
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
         }
 
-        .tab-btn {
-            flex: 1;
-            padding: 15px 10px;
-            border: none;
-            background: transparent;
+        .info-box {
+            padding: 15px 25px;
+            border-radius: 0; /* 移除圓角 */
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            /* 霓虹發光框線與內發光 */
+            border: 2px solid;
+            box-shadow: 
+                0 0 5px inset, 
+                0 0 10px inset, 
+                0 0 5px, 
+                0 0 10px;
+        }
+
+        .countdown-box {
+            background-color: rgba(255, 7, 58, 0.1); /* 紅色底色 (半透明) */
+            color: var(--neon-red);
+            border-color: var(--neon-red);
+            box-shadow: 
+                0 0 5px inset var(--neon-red), 
+                0 0 10px inset var(--neon-red), 
+                0 0 5px var(--neon-red), 
+                0 0 10px var(--neon-red);
+            text-shadow: 0 0 3px var(--neon-red);
+        }
+
+        .weather-box {
+            background-color: rgba(0, 255, 127, 0.1); /* 綠色底色 (半透明) */
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 
+                0 0 5px inset var(--primary-color), 
+                0 0 10px inset var(--primary-color), 
+                0 0 5px var(--primary-color), 
+                0 0 10px var(--primary-color);
+            text-shadow: 0 0 3px var(--primary-color);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion {
+            background-color: var(--bg-color);
+            color: var(--text-color);
             cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            transition: all 0.3s ease;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-            position: relative;
-        }
-
-        .tab-btn:hover {
-            color: var(--neon-cyan);
-            background-color: rgba(0, 240, 255, 0.05);
-        }
-
-        .tab-btn.active {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
+            padding: 25px;
             width: 100%;
-            height: 2px;
-            background-color: var(--neon-cyan);
-            box-shadow: 0 -2px 10px var(--neon-cyan);
-        }
-
-        .tab-content {
-            display: none;
-            padding: 30px 40px;
-            animation: glitchFade 0.4s ease-out forwards;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .day-title {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-top: 0;
-            margin-bottom: 30px;
-            font-weight: 500;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 20px;
+            font-weight: bold;
+            transition: 0.4s;
+            border-radius: 0; /* 移除圓角 */
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            /* 金屬質感框線 */
+            border: 2px solid #333;
         }
 
-        .day-title::before {
-            content: '>>';
-            color: var(--neon-cyan);
-            font-family: 'Orbitron', sans-serif;
+        .active, .accordion:hover {
+            background-color: var(--primary-color); /* 霓虹綠啟用 */
+            color: #111; /* 黑色文字 */
+            box-shadow: 0 0 10px var(--primary-color); /* 霓虹發光 */
+            border-color: var(--primary-color);
         }
 
-        .time-block {
-            margin-bottom: 25px;
-            background: rgba(0, 0, 0, 0.3);
+        /* 加減號改為金色且發光 */
+        .accordion:after {
+            content: '\002B'; /* 加號 */
+            color: var(--gold);
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+            font-size: 1.4em;
+            text-shadow: 0 0 5px var(--gold);
+        }
+
+        .active:after {
+            content: "\2212"; /* 減號 */
+        }
+
+        /* 標題小圖示 */
+        .hk-day-icon {
+            font-weight: 900;
+            margin-right: 12px;
+        }
+        .icon-red {
+            color: var(--neon-red);
+            text-shadow: 0 0 5px var(--neon-red);
+        }
+        .icon-green {
+            color: var(--primary-color);
+            text-shadow: 0 0 5px var(--primary-color);
+        }
+
+        .panel {
+            padding: 0 25px;
+            background-color: var(--header-bg-color); /* 使用與 header 一樣的深色背景 */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-radius: 0; /* 移除圓角 */
+            margin-top: -10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .panel-content {
+            padding: 25px 0;
+        }
+
+        .transport-box {
+            /* 舊報紙米黃背景與黑字 */
+            background-color: var(--secondary-color);
+            color: #111;
+            /* 霓虹藍邊框與發光 */
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 5px var(--neon-blue);
             padding: 20px;
-            border-radius: 4px;
-            border-left: 3px solid var(--neon-blue);
-            transition: all 0.3s ease;
+            margin-top: 20px;
+            border-radius: 0; /* 移除圓角 */
         }
 
-        .time-block:hover {
-            border-left-color: var(--neon-cyan);
-            background: rgba(0, 240, 255, 0.03);
-            box-shadow: inset 20px 0 20px -20px rgba(0, 240, 255, 0.2);
+        .highlight {
+            color: var(--neon-red); /* 高亮文字改為霓虹紅 */
+            font-weight: bold;
+            text-shadow: 0 0 1px var(--neon-red);
         }
 
-        .time-block h3 {
-            color: var(--neon-cyan);
-            margin-top: 0;
-            margin-bottom: 12px;
-            font-size: 1rem;
-            font-family: 'Orbitron', 'Noto Sans TC', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: 1px;
+        /* 當鋪符號清單點綴 (Golden Lucky Symbol) */
+        ul {
+            list-style: none; /* 移除點 */
+            padding-left: 0;
         }
 
-        .time-block h3::before {
-            content: '[ ';
-            color: var(--text-muted);
-        }
-        .time-block h3::after {
-            content: ' ]';
-            color: var(--text-muted);
+        li {
+            padding-left: 15px;
+            position: relative;
+            margin-bottom: 10px;
+            color: var(--text-color);
         }
 
-        .time-block ul {
-            margin: 0;
-            padding-left: 20px;
-            line-height: 1.8;
-            color: var(--text-main);
+        li::before {
+            content: '★'; /* 金色星星符號 */
+            color: var(--gold);
+            text-shadow: 0 0 5px var(--gold);
+            position: absolute;
+            left: 0;
+            top: 0;
         }
 
-        .time-block li {
-            margin-bottom: 8px;
-            list-style-type: square;
-        }
-
-        .time-block li::marker {
-            color: var(--neon-blue);
-        }
-
-        .time-block strong {
-            color: #fff;
-            font-weight: 700;
-        }
-
-        @keyframes glitchFade {
-            0% { opacity: 0; transform: translateY(10px); filter: brightness(2) contrast(2); }
-            100% { opacity: 1; transform: translateY(0); filter: brightness(1) contrast(1); }
-        }
-
-        @media (max-width: 600px) {
-            .tab-btn { font-size: 0.9rem; padding: 12px 5px; }
-            .tab-content { padding: 20px; }
-            .header h1 { font-size: 1.3rem; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <h1>[ 專案：HK-4D3N ] 林義翔家庭旅遊攻略</h1>
-            <div class="sys-sub">STATUS: ONLINE // SYSTEM READY</div>
-        </div>
+<div class="container">
+    <div class="header">
+        <h1>✨ 義翔一家的香港四天三夜奇妙之旅</h1>
+        <p>童話世界 ✕ 維港風情 ✕ 在地美食 專屬行程指南</p>
         
-        <div class="tabs">
-            <button class="tab-btn active" onclick="openTab(event, 'day1')">DAY_01</button>
-            <button class="tab-btn" onclick="openTab(event, 'day2')">DAY_02</button>
-            <button class="tab-btn" onclick="openTab(event, 'day3')">DAY_03</button>
-            <button class="tab-btn" onclick="openTab(event, 'day4')">DAY_04</button>
+        <div class="info-container">
+            <div id="countdown" class="info-box countdown-box">⏳ 倒數計時載入中...</div>
+            <div id="weather" class="info-box weather-box">🌤️ 香港即時天氣載入中...</div>
         </div>
-        
-        <!-- 第一天行程 -->
-        <div id="day1" class="tab-content active">
-            <h2 class="day-title">道地文化、巨星相見與百萬夜景</h2>
-            
-            <div class="time-block">
-                <h3>AM - NOON</h3>
-                <ul>
-                    <li>抵達香港國際機場，前往位於<strong>荃灣</strong>的飯店辦理入住，放下行李。</li>
-                    <li>在飯店附近享用午餐，進行系統重置與稍微休息。</li>
-                </ul>
-            </div>
-            
-            <div class="time-block">
-                <h3>PM_PHASE_1</h3>
-                <ul>
-                    <li>搭乘港鐵荃灣線前往「銅鑼灣站」。</li>
-                    <li>步行至<strong>鵝頸橋底</strong>，親自體驗或觀摩婆婆們打扁紙老虎，載入香港特有的「打小人」文化，體驗極具張力的在地民俗。</li>
-                    <li>在銅鑼灣搭乘香港特有的百年「<strong>叮叮車（雙層電車）</strong>」，悠閒地晃到中環。伴隨叮叮聲穿梭繁華街道，執行城市觀光任務。</li>
-                </ul>
-            </div>
-            
-            <div class="time-block">
-                <h3>PM_PHASE_2</h3>
-                <ul>
-                    <li>抵達中環後，體驗全長超過 800 公尺的<strong>中環半山扶手電梯</strong>。</li>
-                    <li>順道造訪旁邊的<strong>蘭芳園（中環總店）</strong>，買杯首創的絲襪奶茶配上奶油豬或豬扒包，獲取上山前的能量補給。</li>
-                </ul>
-            </div>
-
-            <div class="time-block">
-                <h3>NIGHT</h3>
-                <ul>
-                    <li>前往搭乘經典的<strong>山頂纜車</strong>登上太平山。</li>
-                    <li>進入凌霄閣內的<strong>香港杜莎夫人蠟像館</strong>，與逼真的名人、超級英雄蠟像盡情互動拍照，記錄家庭合影資料。</li>
-                    <li>晚餐直接在山頂的景觀餐廳享用，隨後在凌霄閣摩天台 428 飽覽壯麗的維多利亞港百萬夜景。</li>
-                    <li>結束後，搭乘港鐵荃灣線，一車直達飯店休息。</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 第二天行程 -->
-        <div id="day2" class="tab-content">
-            <h2 class="day-title">沉浸童話世界</h2>
-            
-            <div class="time-block">
-                <h3>FULL_DAY</h3>
-                <ul>
-                    <li><strong>AM：</strong>從荃灣出發轉車前往<strong>香港迪士尼樂園</strong>，全程約 35 分鐘。建議開園前抵達，入園直奔最新超人氣的「魔雪奇緣世界」或明日世界。</li>
-                    <li><strong>PM：</strong>稍作休息後，準備卡位觀賞歡樂的花車巡遊，以及精采的劇場表演（如獅子王慶典）。</li>
-                    <li><strong>NIGHT：</strong>務必留到最後，在奇妙夢想城堡前觀賞璀璨的「星夢光影之旅」夜間煙火光影秀。散場後快速回到荃灣，避免過載勞累。</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 第三天行程 -->
-        <div id="day3" class="tab-content">
-            <h2 class="day-title">寓教於樂、維港風情與夜市煙火氣</h2>
-            
-            <div class="time-block">
-                <h3>AM</h3>
-                <ul>
-                    <li>搭乘荃灣線直達尖沙咀，前往<strong>香港科學館</strong>。</li>
-                    <li>館內有超過 500 件可動手操作的互動展品（包含吸睛的巨型「能量穿梭機」）。廣闊的空間能讓一家人充滿互動與歡笑，寓教於樂。</li>
-                </ul>
-            </div>
-            
-            <div class="time-block">
-                <h3>PM</h3>
-                <ul>
-                    <li>漫步至尖沙咀海濱花園，接著在天星小輪碼頭搭乘百年歷史的<strong>天星小輪</strong>前往對岸。</li>
-                    <li>在海面上吹著微風，用最經典的視角悠閒飽覽維多利亞港兩岸的高樓天際線。</li>
-                </ul>
-            </div>
-
-            <div class="time-block">
-                <h3>NIGHT</h3>
-                <ul>
-                    <li>晚上 20:00 在尖沙咀海濱長廊，欣賞免費的「幻彩詠香江」大型燈光音樂匯演。</li>
-                    <li>看完燈光秀後，搭乘港鐵至「油麻地站」，步行前往<strong>廟街夜市</strong>感受熱鬧的在地煙火氣。</li>
-                    <li>前往著名的<strong>興記菜館</strong>享用晚餐或宵夜。熱騰騰的炭火煲仔飯配上招牌煎蠔餅絕對是一大享受。</li>
-                    <li>吃飽後，沿著同一條港鐵荃灣線直接搭回飯店。</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 第四天行程 -->
-        <div id="day4" class="tab-content">
-            <h2 class="day-title">荃灣在地早茶、採買與賦歸</h2>
-            
-            <div class="time-block">
-                <h3>AM</h3>
-                <ul>
-                    <li>系統待機至自然醒，不需要大老遠跑到市區奔波。</li>
-                    <li>在荃灣本地（例如如心廣場或荃灣廣場內）的傳統港式茶樓，點滿一桌蝦餃、燒賣、叉燒包等「一盅兩件」，舒舒服服地體驗香港早茶文化。</li>
-                </ul>
-            </div>
-            
-            <div class="time-block">
-                <h3>PM</h3>
-                <ul>
-                    <li>把握最後的時間在荃灣商圈購買伴手禮（如曲奇餅乾、蛋卷）。</li>
-                    <li>如果前往機場的時間充裕，可順道安排去距離機場極近的東涌「東薈城名店倉」逛逛。</li>
-                    <li>帶著滿滿的戰利品與資料回憶，前往機場搭機返家，任務完成。</li>
-                </ul>
-            </div>
-        </div>
-
     </div>
 
-    <script>
-        function openTab(evt, tabId) {
-            var tabContents = document.getElementsByClassName("tab-content");
-            for (var i = 0; i < tabContents.length; i++) {
-                tabContents[i].classList.remove("active");
-            }
-            
-            var tabBtns = document.getElementsByClassName("tab-btn");
-            for (var i = 0; i < tabBtns.length; i++) {
-                tabBtns[i].classList.remove("active");
-            }
-            
-            document.getElementById(tabId).classList.add("active");
-            evt.currentTarget.classList.add("active");
+    <button class="accordion"><span class="hk-day-icon icon-red">🚇</span> Day 1：06/11 (四) 抵達香港與入住休息</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>帶著期待的心情抵達香港，首日以輕鬆入住、儲備體力為主。</p>
+            <ul>
+                <li>🛬 抵達香港國際機場。</li>
+                <li>🏨 前往荃灣的飯店辦理入住手續。</li>
+                <li>🛌 周邊自由活動，好好休息。</li>
+            </ul>
+            <div class="transport-box">
+                <p>🚇 <strong>交通攻略：機場 ➔ 荃灣飯店</strong></p>
+                <p><strong>最佳建議：</strong> 一家人同行且有大件行李，建議直接在機場搭乘 <span class="highlight">機場巴士 A31 線</span> 直達荃灣，免去地鐵站內搬運的辛勞。</p>
+                <p><strong>港鐵路線：</strong> 機場站 (機場快綫) ➔ 青衣站 (轉東涌綫) ➔ 荔景站 (轉荃灣綫) ➔ 荃灣站。</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="accordion"><span class="hk-day-icon icon-green">🏰</span> Day 2：06/12 (五) 沉浸童話世界與巨星夜景</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>全日暢遊香港迪士尼樂園，享受充滿歡樂的家庭時光！</p>
+            <ul>
+                <li>❄️ <strong>上午：</strong> 直奔目前最具人氣的「魔雪奇緣世界」。</li>
+                <li>👯‍♀️ <strong>下午：</strong> 佔好位置，觀賞精彩歡樂的「花車巡遊」。</li>
+                <li>🎆 <strong>晚上：</strong> 留在園區欣賞絢麗的「星夢光影之旅」夜間煙火秀.</li>
+            </ul>
+            <div class="transport-box">
+                <p>🚇 <strong>交通攻略：荃灣 ➔ 迪士尼</strong></p>
+                <p><strong>去程：</strong> 荃灣站 (荃灣綫) ➔ 荔景站 (轉東涌綫) ➔ 欣澳站 (轉迪士尼綫) ➔ 迪士尼站。</p>
+                <p><strong>回程：</strong> 煙火結束後，依原路線折返回荃灣站。</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="accordion"><span class="hk-day-icon icon-red">⭐</span> Day 3：06/13 (六) 寓教於樂、維港風情與廟街煙火氣</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>橫跨九龍與港島，體驗最經典的香港在地文化與百萬夜景。</p>
+            <ul>
+                <li>🔬 <strong>上午：</strong> 前往「香港科學館」，體驗豐富的互動設施。</li>
+                <li>⛴️ <strong>下午：</strong> 搭乘經典「天星小輪」過海至中環。體驗「半山扶手電梯」，品嚐「蘭芳園」絲襪奶茶與奶油豬。搭乘「山頂纜車」上太平山，參觀蠟像館與凌霄閣。</li>
+                <li>👵🏼 <strong>傍晚：</strong> 前往銅鑼灣鵝頸橋底，體驗獨特的「打小人」文化。</li>
+                <li>🌌 <strong>晚上：</strong> 20:00 於尖沙咀海濱長廊觀賞「幻彩詠香江」。最後至「廟街夜市」品嚐興記煲仔飯與煎蠔餅。</li>
+            </ul>
+            <div class="transport-box">
+                <p>🚇 <strong>交通攻略：九龍港島走透透</strong></p>
+                <p><strong>科學館：</strong> 荃灣站搭荃灣綫一車直達 <span class="highlight">尖沙咀站</span>，步行前往。</p>
+                <p><strong>過海與太平山：</strong> 尖沙咀碼頭搭 <span class="highlight">天星小輪</span> 至中環。中環市區以步行銜接，至花園道搭 <span class="highlight">山頂纜車</span>。</p>
+                <p><strong>銅鑼灣與夜間行程：</strong> 中環站搭港島綫至 <span class="highlight">銅鑼灣站</span>。隨後搭港島綫至金鐘轉荃灣綫至 <span class="highlight">尖沙咀站</span> 看燈光秀。最後搭荃灣綫至 <span class="highlight">油麻地站</span> 逛廟街，結束後一車直達回荃灣。</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="accordion"><span class="hk-day-icon icon-green">🛍️</span> Day 4：06/14 (日) 荃灣在地早茶、採買與賦歸</button>
+    <div class="panel">
+        <div class="panel-content">
+            <p>把握最後時光，體驗在地飲食文化並完成伴手禮採購。</p>
+            <ul>
+                <li>🥢 <strong>上午：</strong> 在荃灣找一間在地茶樓，體驗傳統「一盅兩件」的港式早茶（蝦餃、燒賣）。</li>
+                <li>🛒 <strong>中午：</strong> 前往東涌的「東薈城名店倉 (Citygate Outlets)」進行最後血拼。</li>
+                <li>✈️ <strong>下午：</strong> 帶著滿滿回憶，前往香港國際機場搭機返家。</li>
+            </ul>
+            <div class="transport-box">
+                <p>🚇 <strong>交通攻略：荃灣 ➔ 東薈城 ➔ 機場</strong></p>
+                <p><strong>前往東薈城：</strong> 荃灣站 (荃灣綫) ➔ 荔景站 (轉東涌綫) ➔ 直達終點 <span class="highlight">東涌站</span>。</p>
+                <p><strong>最佳建議 (東涌至機場)：</strong> 採買結束後 <span class="highlight">不建議搭港鐵</span>。請直接在東涌站旁的巴士總站搭乘 <strong>S1 循環線公車</strong>，約 15 分鐘即可直達機場，方便又便宜！</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // 手風琴 (Accordion) 面板互動設定
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+    // 預設展開第一天
+    acc[0].click();
+
+    // 1. 倒數計時器設定 (目標日期：2026年06月11日 00:00:00)
+    var countDownDate = new Date("Jun 11, 2026 00:00:00").getTime();
+
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        document.getElementById("countdown").innerHTML = "⏳ 出發倒數： " + days + "天 " + hours + "時 " + minutes + "分 " + seconds + "秒 ";
+        
+        // 倒數結束後的顯示訊息
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "🎉 旅程開始囉！祝義翔一家玩得開心！";
         }
-    </script>
+    }, 1000);
+
+    // 2. 獲取香港即時天氣 (使用開源免費的 Open-Meteo API)
+    async function fetchWeather() {
+        try {
+            // 香港座標：緯度 22.2783, 經度 114.1747
+            const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=22.2783&longitude=114.1747&current_weather=true');
+            const data = await response.json();
+            
+            const temp = data.current_weather.temperature;
+            const weatherCode = data.current_weather.weathercode;
+            
+            // 簡易天氣代碼轉換為圖示與文字
+            let weatherIcon = '☁️';
+            let weatherDesc = '多雲';
+            
+            if(weatherCode === 0) { weatherIcon = '☀️'; weatherDesc = '晴朗'; }
+            else if(weatherCode >= 1 && weatherCode <= 3) { weatherIcon = '⛅'; weatherDesc = '晴時多雲'; }
+            else if(weatherCode >= 51 && weatherCode <= 67) { weatherIcon = '🌧️'; weatherDesc = '雨天'; }
+            else if(weatherCode >= 71 && weatherCode <= 77) { weatherIcon = '❄️'; weatherDesc = '下雪'; }
+            else if(weatherCode >= 80 && weatherCode <= 82) { weatherIcon = '🌦️'; weatherDesc = '陣雨'; }
+            else if(weatherCode >= 95) { weatherIcon = '⛈️'; weatherDesc = '雷陣雨'; }
+
+            document.getElementById('weather').innerHTML = `🇭🇰 香港即時：${weatherIcon} ${weatherDesc}，氣溫 ${temp}°C`;
+        } catch (error) {
+            document.getElementById('weather').innerHTML = '🇭🇰 香港即時天氣：暫時無法取得';
+            console.error("天氣資訊獲取失敗:", error);
+        }
+    }
+    
+    // 載入網頁時執行抓取天氣
+    fetchWeather();
+</script>
+
 </body>
 </html>
