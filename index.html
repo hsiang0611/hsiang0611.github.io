@@ -467,102 +467,6 @@
         @media (prefers-reduced-motion: reduce) {
             .confetti-piece { display: none; }
         }
-        /* 出發前氣象追蹤 */
-        .weather-watch {
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            background-color: var(--header-bg-color);
-            border: 2px solid var(--neon-blue);
-            border-radius: 4px;
-            box-shadow: 0 0 8px var(--neon-blue), inset 0 0 6px rgba(0, 0, 255, 0.15);
-            padding: 16px 18px;
-        }
-        .ww-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            gap: 6px;
-            padding-bottom: 10px;
-            border-bottom: 1px dashed #333;
-        }
-        .ww-title {
-            color: #66c2ff;
-            font-size: 15px;
-            font-weight: bold;
-            text-shadow: 0 0 5px var(--neon-blue);
-        }
-        .ww-status {
-            color: var(--gold);
-            font-size: 13px;
-            font-weight: bold;
-            text-shadow: 0 0 3px var(--gold);
-        }
-        .ww-status.alert {
-            color: var(--neon-red);
-            text-shadow: 0 0 5px var(--neon-red);
-        }
-        .ww-section { margin-top: 12px; }
-        .ww-section-title {
-            color: var(--secondary-color);
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            opacity: 0.9;
-        }
-        .ww-change-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 10px;
-            margin-bottom: 6px;
-            background-color: rgba(255, 7, 58, 0.06);
-            border-left: 3px solid var(--neon-red);
-            font-size: 13px;
-            color: var(--text-color);
-            border-radius: 0 3px 3px 0;
-            flex-wrap: wrap;
-        }
-        .ww-change-row.cooler {
-            background-color: rgba(0, 0, 255, 0.06);
-            border-left-color: var(--neon-blue);
-        }
-        .ww-change-row.improved {
-            background-color: rgba(0, 255, 127, 0.06);
-            border-left-color: var(--primary-color);
-        }
-        .ww-change-date {
-            font-weight: bold;
-            min-width: 75px;
-            color: var(--gold);
-            text-shadow: 0 0 2px var(--gold);
-        }
-        .ww-change-detail { flex: 1; min-width: 0; }
-        .ww-delta-up { color: var(--neon-red); font-weight: bold; text-shadow: 0 0 2px var(--neon-red); }
-        .ww-delta-down { color: #66c2ff; font-weight: bold; text-shadow: 0 0 2px var(--neon-blue); }
-        .ww-tip {
-            padding: 8px 12px;
-            margin-bottom: 6px;
-            background-color: rgba(0, 255, 127, 0.06);
-            border-left: 3px solid var(--primary-color);
-            font-size: 13px;
-            line-height: 1.55;
-            color: var(--text-color);
-            border-radius: 0 3px 3px 0;
-        }
-        .ww-tip:last-child { margin-bottom: 0; }
-        .ww-tip strong { color: var(--primary-color); text-shadow: 0 0 2px var(--primary-color); }
-        .ww-empty {
-            padding: 8px 10px;
-            color: #b0afab;
-            font-size: 13px;
-            font-style: italic;
-            background-color: rgba(255, 255, 255, 0.02);
-            border-left: 3px solid #555;
-            border-radius: 0 3px 3px 0;
-        }
-
         /* 緊急聯絡資訊 */
         .emergency-row {
             display: grid;
@@ -699,6 +603,38 @@
     </div>
 
     <details class="collapse-box">
+        <summary>✈️ 即時航班資訊</summary>
+        <div class="collapse-body">
+            <div class="emergency-row"><span class="emergency-label">🛫 去程・Day 1（06/11）</span><span class="emergency-value">UO193　香港快運 HK Express</span></div>
+            <div class="emergency-row"><span class="emergency-label">航線 / 航廈</span><span class="emergency-value">台中 RMQ（T2）→ 香港 HKG（T1）</span></div>
+            <div class="emergency-row"><span class="emergency-label">時刻</span><span class="emergency-value"><span class="highlight">10:25 起飛</span> → 12:10 預計抵達（約 1h45m）</span></div>
+            <div style="margin:6px 0 18px;display:flex;flex-wrap:wrap;gap:8px;">
+                <a class="nav-btn" style="margin-left:0;" href="https://www.flightradar24.com/data/flights/uo193" target="_blank" rel="noopener noreferrer">📡 Flightradar24 即時追蹤</a>
+                <a class="nav-btn" style="margin-left:0;" href="https://www.trip.com/flights/status-uo193/" target="_blank" rel="noopener noreferrer">🔎 航班狀態查詢</a>
+            </div>
+
+            <div class="emergency-row"><span class="emergency-label">🛬 回程・Day 4（06/14）</span><span class="emergency-value">UO182　香港快運 HK Express</span></div>
+            <div class="emergency-row"><span class="emergency-label">航線 / 航廈</span><span class="emergency-value">香港 HKG（T1）→ 台中 RMQ（T2）</span></div>
+            <div class="emergency-row"><span class="emergency-label">時刻</span><span class="emergency-value"><span class="highlight">18:15 起飛</span> → 19:55 預計抵達（約 1h40m）</span></div>
+            <div style="margin:6px 0 4px;display:flex;flex-wrap:wrap;gap:8px;">
+                <a class="nav-btn" style="margin-left:0;" href="https://www.flightradar24.com/data/flights/uo182" target="_blank" rel="noopener noreferrer">📡 Flightradar24 即時追蹤</a>
+                <a class="nav-btn" style="margin-left:0;" href="https://www.trip.com/flights/status-uo182/" target="_blank" rel="noopener noreferrer">🔎 航班狀態查詢</a>
+            </div>
+
+            <div class="emergency-row" style="margin-top:14px;border-top:1px dashed #444;padding-top:14px;"><span class="emergency-label">🛂 報到與機場看板</span><span class="emergency-value" style="font-size:13px;font-weight:normal;opacity:0.85">香港快運於起飛前 48 小時～75 分鐘開放網上報到</span></div>
+            <div style="margin:6px 0 4px;display:flex;flex-wrap:wrap;gap:8px;">
+                <a class="nav-btn" style="margin-left:0;" href="https://www.hkexpress.com/zh-hk/" target="_blank" rel="noopener noreferrer">📝 香港快運 線上報到</a>
+                <a class="nav-btn" style="margin-left:0;" href="https://www.hongkongairport.com/tc/flights/departures/passenger.page" target="_blank" rel="noopener noreferrer">🛫 香港機場航班看板</a>
+                <a class="nav-btn" style="margin-left:0;" href="https://www.tca.gov.tw/cht/index.php?act=fids&code=today" target="_blank" rel="noopener noreferrer">🛬 台中機場航班看板</a>
+            </div>
+
+            <div class="emergency-note">
+                💡 <strong>小提醒：</strong>點上方連結需連網才能看即時動態。建議<span class="highlight">起飛前一天與當天各查一次</span>，確認實際時刻、航廈與登機門、是否延誤。香港快運線上報到後仍須留意：如需託運行李，請到機場行李櫃檯辦理；未拿到登機證 QR code 視同未完成報到，務必提早到櫃檯確認。RMQ 為台中清泉崗機場、HKG 為香港國際機場（赤鱲角）。
+            </div>
+        </div>
+    </details>
+
+    <details class="collapse-box">
         <summary>🧳 行前打包清單</summary>
         <div class="collapse-body" id="packing-list">
             <label class="pack-item"><input type="checkbox" data-pack="passport"><span>護照 / 台胞證（效期確認）</span></label>
@@ -769,6 +705,41 @@
     </details>
 
     <details class="collapse-box">
+        <summary>🏠 荃灣在地美食推薦</summary>
+        <div class="collapse-body">
+            <p style="color:#b0afab;font-size:13px;margin:0 0 14px;line-height:1.6;">荃灣素有「米線王國」「掃街者天堂」之稱，是全港數一數二的美食集中地！帝景酒店有免費接駁車往返荃灣站／荃灣西站，<span class="highlight">從荃灣站步行約 5 分鐘即達「路德圍」食街</span>，很適合 Day 1 晚餐、玩累回來的宵夜，或睡前覓食。（以下價格、營業時間請以現場為準）</p>
+
+            <p style="color:var(--primary-color);font-weight:bold;margin:18px 0 8px;text-shadow:0 0 4px var(--primary-color);">🔥 路德圍掃街區（荃灣站步行約 5 分鐘）</p>
+            <p style="color:#b0afab;font-size:13px;margin:0 0 8px;">由安榮街、荃興徑、海壩街、路德圍圍成的方形街區，聚集 30–40 間街坊小店，邊走邊吃最對味。</p>
+            <ul>
+                <li>🥤 <strong>康樂茶冰廳</strong>（荃興徑）：區內低調老牌冰室，吃的是一種情懷，經典港式奶茶、多士與碟頭飯。<a href="https://www.google.com/maps/search/?api=1&query=康樂茶冰廳+荃灣荃興徑" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a></li>
+                <li>🍜 <strong>18座狗仔粉</strong>：在這區開了多年的香港街頭風味「狗仔粉」老店，配料豐富、惹味。<a href="https://www.google.com/maps/search/?api=1&query=18座狗仔粉+荃灣" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a></li>
+                <li>🦀 <strong>Try My Bread</strong>（荃興徑）：人氣小店，招牌爆餡軟殼蟹吐司，份量十足。<a href="https://www.google.com/maps/search/?api=1&query=Try+My+Bread+荃灣荃興徑" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a></li>
+                <li>🍢 <strong>掃街小吃</strong>：串燒、咖哩魚蛋、即磨腸粉、香菇豬肉燒賣、黑芝麻軟雪糕……沿街隨意挑，價錢親民。</li>
+            </ul>
+
+            <p style="color:var(--primary-color);font-weight:bold;margin:18px 0 8px;text-shadow:0 0 4px var(--primary-color);">🍲 米線王國（荃灣的米線密度全港數一數二）</p>
+            <ul>
+                <li>🌶️ <strong>雲家小鍋米線</strong>（沙咀道 328 廣場 G01）：麻辣米線，招牌雪花雞絲、炸醬腩肉，份量足、定價親民（人均約 HK$51–100），尖峰需排隊。<a href="https://www.google.com/maps/search/?api=1&query=雲家小鍋米線+荃灣沙咀道328廣場" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a></li>
+                <li>🥢 <strong>唯一雲貴川風味</strong>（四陂坊 14 號）：常排人龍的老字號，酸辣／麻辣湯底，自家製辣油，炸醬腩肉為網民必點（人均約 HK$50）。<a href="https://www.google.com/maps/search/?api=1&query=唯一雲貴川風味+荃灣四陂坊" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a></li>
+            </ul>
+
+            <p style="color:var(--primary-color);font-weight:bold;margin:18px 0 8px;text-shadow:0 0 4px var(--primary-color);">🇹🇭 泰國菜・晚餐好選擇</p>
+            <ul>
+                <li>🍢 <strong>泰Grill</strong>：泰籍廚師主理，即叫即燒沙嗲串燒、蛋包炒金邊粉、手打青咖哩、芒果糯米飯，晚上常見街坊排隊。<a href="https://www.google.com/maps/search/?api=1&query=泰Grill+荃灣" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a></li>
+            </ul>
+
+            <p style="color:var(--primary-color);font-weight:bold;margin:18px 0 8px;text-shadow:0 0 4px var(--primary-color);">🥟 飲茶・粵菜・糖水</p>
+            <ul>
+                <li>🫖 <strong>老馮茶居</strong>（荃灣千色匯 II，近荃灣站）：價格親民、好帶行李，<span class="highlight">Day 4 早茶首選</span>。<a href="https://www.google.com/maps/search/?api=1&query=老馮茶居+荃灣千色匯II" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a></li>
+                <li>🏞️ <strong>端記茶樓</strong>（川龍村）：鄉郊老字號，推車仔點心、山景悠閒，僅收現金（需轉小巴約 15 分鐘）。<a href="https://www.google.com/maps/search/?api=1&query=端記茶樓+荃灣川龍村" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a></li>
+                <li>🍮 <strong>稻香 / 茶皇殿</strong>：大型粵菜酒樓，一盅兩件選擇多，適合一家人坐下來慢慢吃。</li>
+                <li>🍧 <strong>糖水店</strong>（海壩街一帶）：掃街尾聲來碗傳統糖水收尾，畫下完美句點。</li>
+            </ul>
+        </div>
+    </details>
+
+    <details class="collapse-box">
         <summary>🆘 緊急聯絡資訊</summary>
         <div class="collapse-body">
             <div class="emergency-row">
@@ -816,7 +787,7 @@
         <h2 class="pane-title">🚇 Day 1：抵達香港、黃大仙與城寨探秘</h2>
         <p>帶著期待的心情抵達香港，辦理入住後，前往香火鼎盛的黃大仙祈福，再到充滿傳奇色彩的九龍城寨公園感受歷史與江南園林的交錯。</p>
         <ul>
-            <li class="clickable-task" data-id="d1-1">✈️ <strong>航班資訊：</strong> 10:25 台中 (RMQ) 起飛 ➔ 12:10 抵達香港 (HKG)。</li>
+            <li class="clickable-task" data-id="d1-1">✈️ <strong>航班資訊：</strong> 搭乘香港快運 <span class="highlight">UO193</span>，10:25 台中 (RMQ・第二航廈) 起飛 ➔ 12:10 抵達香港 (HKG・第一航廈)。即時動態可查上方「✈️ 即時航班資訊」。</li>
             <li class="clickable-task" data-id="d1-2">🏨 前往「荃灣帝景酒店 (Royal View Hotel)」辦理入住手續並放置行李。<a href="https://www.google.com/maps/search/?api=1&query=荃灣帝景酒店" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至酒店</a></li>
             <li class="clickable-task" data-id="d1-3">⛩️ <strong>下午：</strong> 出發前往香火鼎盛的「黃大仙祠」參拜祈福，體驗特有的求籤文化。<a href="https://www.google.com/maps/search/?api=1&query=黃大仙祠" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至黃大仙</a></li>
             <li class="clickable-task" data-id="d1-4">🏯 <strong>傍晚：</strong> 轉往「九龍寨城公園」，漫步於昔日「三不管」地帶的遺址。<a href="https://www.google.com/maps/search/?api=1&query=九龍寨城公園" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至城寨公園</a></li>
@@ -829,52 +800,73 @@
         </div>
         <div class="day-note-wrap">
             <label class="day-note-label" for="note-day1">📝 Day 1 備忘錄（自動儲存於本機）</label>
-            <textarea id="note-day1" class="day-note" data-note-id="day1" rows="4" placeholder="記下今天的花費、心情、想再訪的店家、需要補買的東西..."></textarea>
+            <textarea id="note-day1" class="day-note" data-note-id="day1" rows="9" placeholder="📋 抵達當天確認：&#10;・班機抵達 / 出關 / 領行李：____&#10;・帝景酒店 check-in & 房號：____&#10;・八達通儲值 / 網卡開通：____&#10;・A38 巴士 or 接駁車班次：____&#10;&#10;📝 今日記錄：&#10;・黃大仙求籤結果 / 城寨印象：&#10;・晚餐吃了什麼 & 今日花費："></textarea>
             <span class="day-note-status" data-status-for="day1">✓ 已自動儲存</span>
         </div>
     </div>
 
     <div id="day2" class="tab-pane" role="tabpanel" aria-labelledby="tab-day2">
         <h2 class="pane-title">🏰 Day 2：沉浸童話世界與巨星夜景</h2>
-        <p>全日暢遊香港迪士尼樂園，享受充滿歡樂的家庭時光！</p>
+        <p>全日暢遊香港迪士尼樂園，正逢 20 週年慶典！<span class="highlight">這次有加購「提早入園證」，等於拿到一張比尊享卡更划算的神器</span>——重點是把正式開園前的「黃金時段」用好：先衝排隊最久的魔雪奇緣世界，再卡在第二熱門的反斗奇兵入口等正式開園秒搶，照下面走，11:30 前熱門設施幾乎就能全破關，整個下午便能輕鬆看表演、重溫喜歡的設施。<span class="highlight">所有表演時間皆為參考，請以入園當天官方 App／官網公告為準。</span></p>
         <ul>
-            <li class="clickable-task" data-id="d2-1">🎟️ <strong>09:00：</strong> 抵達樂園，準備準時入園！<a href="https://www.google.com/maps/search/?api=1&query=香港迪士尼樂園" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至園區</a></li>
-            <li class="clickable-task" data-id="d2-2">❄️ <strong>上午：</strong> 避開人潮，直奔目前最具人氣的「魔雪奇緣世界」。</li>
-            <li class="clickable-task" data-id="d2-3">👯‍♀️ <strong>下午：</strong> 佔好位置，觀賞精彩歡樂的「花車巡遊」。</li>
-            <li class="clickable-task" data-id="d2-4">🎆 <strong>晚上：</strong> 留在園區欣賞絢麗的「星夢光影之旅」夜間煙火秀。</li>
+            <li class="clickable-task" data-id="d2-arrive">🎟️ <strong>08:00 抵達正門：</strong> 正式開園 10:00、提早入園約 09:00。請務必 08:00–08:15 就到正門排隊（要先搭園區專車到門口、再過安檢），目標是<span class="highlight">搶第一批入園</span>，把黃金時段最大化。<a href="https://www.google.com/maps/search/?api=1&query=香港迪士尼樂園" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至園區</a></li>
+            <li class="clickable-task" data-id="d2-frozen">❄️ <strong>09:00 提早入園・直衝魔雪奇緣世界：</strong> 穿過美國小鎮大街（先別逛）一路衝到全園最熱門的冰雪奇緣園區。趁人潮還沒進來，連刷「<strong>魔雪奇幻之旅</strong>」與「<strong>雪嶺滑雪橇</strong>」，還能從容拍友誼噴泉、國王橋與 Elsa 冰雪皇宮——這時段拍照幾乎無人入鏡！</li>
+            <li class="clickable-task" data-id="d2-toystory">🤠 <strong>09:45→10:00 反斗奇兵大本營：</strong> 接近正式開園時，移動到鄰近的反斗奇兵入口卡位待命。10:00 一開園立刻搶玩「<strong>沖天遙控車</strong>」（120cm）、「玩具兵團跳降傘」、「轉轉彈弓狗」，再跟超大胡迪合照。</li>
+            <li class="clickable-task" data-id="d2-reserve">📱 <strong>10:30 抽森林小天地預約卡：</strong> 「<strong>森林小天地</strong>」（與 Anna、Elsa 的互動劇場）是園內唯一需預約的設施，<span class="highlight">開園 30 分鐘後（約 10:30）才開放抽選</span>。打開官方 App → 點下方「＋」→「領取預約等候卡」→ 加入同行者，抽到時段後再依時段前往即可。</li>
+            <li class="clickable-task" data-id="d2-mystic">🏚️ <strong>11:00 迷離莊園＋灰熊山谷：</strong> 趁人潮尚未湧入，續玩香港<span class="highlight">全球獨家</span>的「<strong>迷離大宅</strong>」（無軌道車、無身高限制、不恐怖）與刺激的「<strong>灰熊山極速礦車</strong>」。到這裡，全園熱門設施大致已破關！別錯過礦車對面小屋的隱藏「水砲大戰」。</li>
+            <li class="clickable-task" data-id="d2-lunch">🍽️ <strong>12:00 午餐：</strong> 上午衝刺後好好坐下來吃一頓。可在「探險世界」餐廳用餐，或到美國小鎮大街「大街市集」外帶火雞腿、熱狗、米奇鬆餅。先買「樂園美食餐券」較划算。</li>
+            <li class="clickable-task" data-id="d2-lionking">🦁 <strong>13:00 探險世界・獅子王慶典（必看）：</strong> 香港迪士尼三大室內劇場秀之一，約 30 分鐘，結合澎湃歌舞、非洲鼓樂、高空特技與巨型動物人偶，重現《Circle of Life》等經典。圓形劇場設計、座位無死角，<span class="highlight">建議提前約 30 分鐘進場、入場後往左移動</span>搶好位。正好吹冷氣、坐著休息回血。</li>
+            <li class="clickable-task" data-id="d2-forest">🌲 <strong>依預約時段・森林小天地：</strong> 時間到了就回魔雪奇緣世界玩上午抽到的互動劇場，成為安娜與愛莎故事中的一角（三大必看室內秀之一）。</li>
+            <li class="clickable-task" data-id="d2-tomorrow">🚀 <strong>14:00 明日世界：</strong> 玩「鐵甲奇俠飛行之旅」（全球首個漫威設施）或「蟻俠與黃蜂女：擊戰特攻」射擊遊戲，比比誰分數高。</li>
+            <li class="clickable-task" data-id="d2-fantasy">🐝 <strong>15:00 幻想世界：</strong> 玩「小熊維尼歷險之旅」「米奇幻想曲」「小小世界」，到奇妙夢想城堡前拍照；隱藏打卡點「童話園林」轉動音樂盒把手公主模型會動，人少好拍。留意城堡白天表演「迪士尼好友 Live：城堡派對」。</li>
+            <li class="clickable-task" data-id="d2-book">📖 <strong>16:00 幻想世界・迪士尼魔法書房（必看）：</strong> 同在幻想世界的「迪士尼故事劇場」，約 28 分鐘音樂劇場、三大必看室內秀之一。米奇、高飛與雪寶翻開魔法書，一路串起小美人魚、魔髮奇緣、阿拉丁、冰雪奇緣等 7 個經典故事，現場演唱＋百老匯式歌舞。超熱門，<span class="highlight">建議提前 20–30 分鐘排隊入場</span>；想坐前排可考慮單項加購尊享卡（前 4 排常保留給尊享卡與白金卡會員）。</li>
+            <li class="clickable-task" data-id="d2-parade">👯‍♀️ <strong>17:15 迪士尼好友巡遊派對：</strong> 史上最大型花車巡遊，11 輛花車、30+ 角色（含首登場的洪金豹）。路線由城堡廣場 → 美國小鎮大街，<span class="highlight">提早約 30 分鐘在大街旁卡位</span>。每日兩場（約 13:00、17:15），選傍晚這場較不與上午衝刺撞期。</li>
+            <li class="clickable-task" data-id="d2-shop">🛍️ <strong>18:30 晚餐＋採買：</strong> 用晚餐後逛美國小鎮大街最大的「百貨店」，迪士尼商品一次買齊（人潮比東京少很多，好逛好買）。</li>
+            <li class="clickable-task" data-id="d2-fireworks">🎆 <strong>壓軸夜間匯演：</strong> 「<strong>迪士尼星夢光影之旅</strong>」（20 週年星空派對版），結合立體光雕投影、水幕、無人機與煙火，約 28–30 分鐘；2026 夏季更於匯演前加映全新「<strong>Pixar 好友星空匯演</strong>」無人機秀。<span class="highlight">提早 30–45 分鐘</span>到美國小鎮大街迴旋處（靠城堡、站偏左，無人機效果最好）卡位，看完整場再離場！</li>
+            <li class="clickable-task" data-id="d2-exit">🚕 <strong>散場攻略：</strong> 煙火一結束接駁與計程車人潮非常恐怖，建議先在大街商店逛一下、錯開第一波尖峰，再搭計程車回帝景酒店（約 20 分鐘，花點小錢換舒適）。</li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：帝景酒店 ➔ 迪士尼</strong></p>
             <p><strong>去程：</strong> 搭乘「酒店免費接駁車」或 234B 巴士至 <span class="highlight">荃灣站 / 荃灣西站</span>，轉乘港鐵（荃灣綫 ➔ 荔景站轉東涌綫 ➔ 欣澳站轉迪士尼綫）即可抵達。<a href="https://www.google.com/maps/search/?api=1&query=迪士尼站" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至迪士尼站</a></p>
             <p><strong>回程與建議：</strong> 煙火結束後通常較晚，若一家人玩得較為疲累，強烈建議直接從迪士尼搭乘計程車回帝景酒店（車程約20分鐘），花點小錢換取舒適。</p>
         </div>
+        <div class="transport-box">
+            <p>🎯 <strong>園內實戰攻略懶人包</strong></p>
+            <p><strong>表演時間：</strong> 巡遊與夜間匯演每日時間會變動，<span class="highlight">入園第一件事先用官方「香港迪士尼樂園」App 查當天場次與排隊狀況</span>，再微調順序。</p>
+            <p><strong>善用提早入園：</strong> 你已加購提早入園，黃金時段（開園前～11:30）就能把魔雪奇緣、反斗奇兵、迷離大宅、灰熊山礦車等熱門設施幾乎玩透，<span class="highlight">通常就不必再花錢買尊享卡</span>；除非某項排隊仍很久、想再刷一次，才考慮單項加購。</p>
+            <p><strong>森林小天地：</strong> 唯一需預約的設施，開園 30 分鐘後（約 10:30）才在 App 開放抽選，記得設好鬧鐘準時搶。</p>
+            <p><strong>三大室內劇場秀：</strong> 獅子王慶典（探險世界）、迪士尼魔法書房（幻想世界）、森林小天地（魔雪奇緣世界）是<span class="highlight">公認三大必看室內秀</span>，場次固定。入園先在 App 抄好當天場次、排進行程，前兩者各提前 20–30 分鐘排隊入場；三場都在室內、有冷氣，剛好分散在下午當休息點。</p>
+            <p><strong>看煙火卡位：</strong> 提早 30–45 分鐘到美國小鎮大街迴旋處、靠城堡偏左的位置；太靠近城堡反而看不清無人機。</p>
+            <p><strong>天氣與帶娃：</strong> 六月濕熱多雨，務必帶水、防曬、輕便雨具；帶小孩可租嬰兒車，並善用獅子王慶典等室內表演吹冷氣休息。</p>
+        </div>
         <div class="day-note-wrap">
             <label class="day-note-label" for="note-day2">📝 Day 2 備忘錄（自動儲存於本機）</label>
-            <textarea id="note-day2" class="day-note" data-note-id="day2" rows="4" placeholder="記下今天玩到的設施、最愛的角色、紀念品花費..."></textarea>
+            <textarea id="note-day2" class="day-note" data-note-id="day2" rows="9" placeholder="📋 入園先用官方 App 抄下今日場次：&#10;・森林小天地抽到：____&#10;・獅子王慶典：____&#10;・迪士尼魔法書房：____&#10;・花車巡遊：____　・夜間匯演：____&#10;&#10;📝 今日記錄：&#10;・玩到的設施 / 最愛角色：&#10;・紀念品 & 今日花費："></textarea>
             <span class="day-note-status" data-status-for="day2">✓ 已自動儲存</span>
         </div>
     </div>
 
     <div id="day3" class="tab-pane" role="tabpanel" aria-labelledby="tab-day3">
         <h2 class="pane-title">⭐ Day 3：寓教於樂、米其林燒鵝與維港夜景</h2>
-        <p>橫跨九龍與港島，從米其林一星燒鵝到絲襪奶茶，體驗最經典的香港在地文化與百萬夜景。</p>
+        <p>橫跨九龍與港島，從米其林一星燒鵝到絲襪奶茶，搭復古叮叮車、天星小輪與山頂纜車，體驗最經典的香港在地文化與百萬夜景。</p>
         <ul>
             <li class="clickable-task" data-id="d3-1">🔬 <strong>上午：</strong> 前往「香港科學館」，體驗豐富的互動設施。<a href="https://www.google.com/maps/search/?api=1&query=香港科學館" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至科學館</a></li>
             <li class="clickable-task" data-id="d3-lunch">🦆 <strong>中午：</strong> 搭乘經典「天星小輪」過海至中環<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀天星碼頭" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至碼頭</a>，步行至米其林一星名店「一樂燒鵝」(中環士丹利街本店)，品嚐招牌燒鵝瀨粉與滷水鵝肉，連續多年榮獲米其林推薦。<a href="https://www.google.com/maps/search/?api=1&query=一樂燒鵝+中環士丹利街34號" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至一樂燒鵝</a></li>
             <li class="clickable-task" data-id="d3-shop">🛒 <strong>飯後採買：</strong> 從一樂燒鵝步行 3–5 分鐘可一次走完香港兩大人氣伴手禮店！先至「<strong>檸檬王</strong>」(上環永吉街18號) 買甘草檸檬，再至「<strong>珍妮曲奇 上環店</strong>」(永和街15號) 買小熊餅乾。⚠️ <span class="highlight">兩家皆只收現金</span>，珍妮曲奇每人限購5盒、賣完即關門，建議飯後盡早前往。<a href="https://www.google.com/maps/search/?api=1&query=檸檬王+上環永吉街18號" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 檸檬王</a><a href="https://www.google.com/maps/search/?api=1&query=珍妮曲奇+上環永和街15號" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 珍妮曲奇</a></li>
-            <li class="clickable-task" data-id="d3-2">☕ <strong>下午：</strong> 飯後體驗「半山扶手電梯」<a href="https://www.google.com/maps/search/?api=1&query=中環半山扶手電梯" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a>，至「蘭芳園」品嚐絲襪奶茶與奶油豬<a href="https://www.google.com/maps/search/?api=1&query=蘭芳園中環總店" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至蘭芳園</a>。隨後搭乘「山頂纜車」上太平山欣賞景色。<a href="https://www.google.com/maps/search/?api=1&query=山頂纜車" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至纜車站</a></li>
-            <li class="clickable-task" data-id="d3-3">👵🏼 <strong>傍晚：</strong> 前往銅鑼灣鵝頸橋底，體驗獨特的「打小人」文化。<a href="https://www.google.com/maps/search/?api=1&query=鵝頸橋打小人" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至鵝頸橋</a></li>
+            <li class="clickable-task" data-id="d3-tram">🚋 <strong>13:45 叮叮車「電車全景遊」（觀光兼接駁，建議先預訂）：</strong> 飯後從上環西港城總站搭乘仿 1920 年代復古開篷電車，約 1 小時飽覽港島街景、16 種語言沿途導覽，一路順遊到銅鑼灣。<span class="highlight">含 2 天電車通行證</span>，兩天內可無限次免費搭乘一般叮叮車（下車給司機看票即可），等於把往返車資也省下了。<a href="https://www.hktramways.com/tc/tramoramic" target="_blank" rel="noopener noreferrer" class="nav-btn">🎫 預訂 / 詳情</a><a href="https://www.google.com/maps/search/?api=1&query=香港電車上環西港城總站" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 上環搭乘點</a></li>
+            <li class="clickable-task" data-id="d3-3">👵🏼 <strong>約 15:00 銅鑼灣・打小人：</strong> 電車於銅鑼灣總站下車後，步行至鵝頸橋底，體驗獨特的「打小人」民俗文化。<a href="https://www.google.com/maps/search/?api=1&query=鵝頸橋打小人" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至鵝頸橋</a></li>
+            <li class="clickable-task" data-id="d3-2">☕🚠 <strong>傍晚・中環半山 & 太平山：</strong> 持電車通行證免費搭叮叮車（或港鐵）由銅鑼灣回中環，體驗「半山扶手電梯」<a href="https://www.google.com/maps/search/?api=1&query=中環半山扶手電梯" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a>，至「蘭芳園」品嚐絲襪奶茶與奶油豬<a href="https://www.google.com/maps/search/?api=1&query=蘭芳園中環總店" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至蘭芳園</a>，再搭「山頂纜車」上太平山欣賞日落與夜景。<span class="highlight">留意時間，約 19:00 前下山</span>趕赴尖沙咀。<a href="https://www.google.com/maps/search/?api=1&query=山頂纜車" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至纜車站</a></li>
             <li class="clickable-task" data-id="d3-4">🌌 <strong>晚上：</strong> 20:00 於尖沙咀觀賞「幻彩詠香江」<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀海濱長廊" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a>。最後至「廟街夜市」品嚐興記煲仔飯。<a href="https://www.google.com/maps/search/?api=1&query=廟街興記煲仔飯" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至興記</a></li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：九龍港島走透透</strong></p>
             <p><strong>市區出發：</strong> 先搭乘「酒店接駁車」至荃灣站。從荃灣站搭乘荃灣綫一車直達 <span class="highlight">尖沙咀站</span>，步行前往科學館。</p>
-            <p><strong>過海與太平山：</strong> 尖沙咀碼頭搭 <span class="highlight">天星小輪</span> 至中環。中環市區以步行銜接，至花園道搭 <span class="highlight">山頂纜車</span>。</p>
+            <p><strong>過海與港島串接：</strong> 尖沙咀碼頭搭 <span class="highlight">天星小輪</span> 至中環，步行往上環用餐、採買伴手禮。13:45 於上環西港城搭 <span class="highlight">電車全景遊</span> 一路觀光到銅鑼灣（打小人）；之後憑 2 天電車通行證免費搭叮叮車（或港鐵）回中環，至花園道搭 <span class="highlight">山頂纜車</span> 上太平山。</p>
             <p><strong>夜間回程：</strong> 逛完油麻地廟街後，搭乘港鐵荃灣綫直達 <span class="highlight">荃灣站</span>，再轉乘計程車或留意接駁車班次返回帝景酒店。</p>
         </div>
         <div class="day-note-wrap">
             <label class="day-note-label" for="note-day3">📝 Day 3 備忘錄（自動儲存於本機）</label>
-            <textarea id="note-day3" class="day-note" data-note-id="day3" rows="4" placeholder="一樂燒鵝好吃嗎？檸檬王買了幾包？太平山夜景怎麼樣？..."></textarea>
+            <textarea id="note-day3" class="day-note" data-note-id="day3" rows="10" placeholder="📋 今日要點（多處只收現金，記得備足港幣）：&#10;・天星小輪班次：____&#10;・一樂燒鵝排隊 & 必點：____&#10;・檸檬王買幾包：____　珍妮曲奇幾盒：____&#10;・山頂纜車時段：____　幻彩詠香江 20:00&#10;&#10;📝 今日記錄：&#10;・最愛的一餐 / 太平山夜景：&#10;・今日花費："></textarea>
             <span class="day-note-status" data-status-for="day3">✓ 已自動儲存</span>
         </div>
     </div>
@@ -886,7 +878,7 @@
             <li class="clickable-task" data-id="d4-1">🥢 <strong>上午：</strong> 辦理退房後，於荃灣享用傳統「一盅兩件」港式早茶。推薦「<strong>老馮茶居</strong>」(荃灣千色匯II，近荃灣站，價格親民、好帶行李)；想體驗鄉郊老字號可考慮「<strong>端記茶樓</strong>」(川龍村，需轉小巴 15 分鐘，山景、推車仔點心、僅收現金)。<a href="https://www.google.com/maps/search/?api=1&query=老馮茶居+荃灣千色匯II" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 老馮茶居</a><a href="https://www.google.com/maps/search/?api=1&query=端記茶樓+荃灣川龍村" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 端記茶樓</a></li>
             <li class="clickable-task" data-id="d4-2">🚠 <strong>近午：</strong> 前往東涌搭乘「昂坪360纜車」，從高空俯瞰大嶼山壯麗景色與天壇大佛。<a href="https://www.google.com/maps/search/?api=1&query=昂坪360東涌站" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至纜車站</a></li>
             <li class="clickable-task" data-id="d4-3">🛒 <strong>下午：</strong> 回到起點的「東薈城名店倉 (Citygate Outlets)」進行最後血拼與享用晚餐。<a href="https://www.google.com/maps/search/?api=1&query=東薈城名店倉" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至東薈城</a></li>
-            <li class="clickable-task" data-id="d4-4">✈️ <strong>航班資訊：</strong> 18:15 香港 (HKG) 起飛 ➔ 19:55 抵達台中 (RMQ)。帶著滿滿回憶，平安返家！</li>
+            <li class="clickable-task" data-id="d4-4">✈️ <strong>航班資訊：</strong> 搭乘香港快運 <span class="highlight">UO182</span>，18:15 香港 (HKG・第一航廈) 起飛 ➔ 19:55 抵達台中 (RMQ・第二航廈)。帶著滿滿回憶，平安返家！即時動態可查上方「✈️ 即時航班資訊」。</li>
         </ul>
         <div class="transport-box">
             <p>🚇 <strong>交通攻略：帝景酒店 ➔ 東涌 (昂坪/東薈城) ➔ 機場</strong></p>
@@ -895,7 +887,7 @@
         </div>
         <div class="day-note-wrap">
             <label class="day-note-label" for="note-day4">📝 Day 4 備忘錄（自動儲存於本機）</label>
-            <textarea id="note-day4" class="day-note" data-note-id="day4" rows="4" placeholder="昂坪纜車景色如何？東薈城買了什麼？這趟旅行最難忘的瞬間..."></textarea>
+            <textarea id="note-day4" class="day-note" data-note-id="day4" rows="9" placeholder="📋 離港當天確認：&#10;・退房 & 寄放行李：____&#10;・早茶（老馮 / 端記）：____&#10;・昂坪360纜車時段：____&#10;・回程班機 18:15／S1 巴士提早到機場：____&#10;&#10;📝 今日記錄：&#10;・東薈城戰利品 & 花費：&#10;・這趟旅行最難忘的瞬間："></textarea>
             <span class="day-note-status" data-status-for="day4">✓ 已自動儲存</span>
         </div>
     </div>
