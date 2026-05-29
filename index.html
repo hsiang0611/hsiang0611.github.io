@@ -23,6 +23,7 @@
             --secondary-color: #f5f1e6;   
             --gold: #d4af37;             
             --neon-blue: #00f;          
+            --temp-lo: #4ea3ff;         /* 預報最低溫專用：比純藍 #00f 在深底更好讀 */
         }
         
         body {
@@ -362,7 +363,7 @@
         .forecast-card .fc-date { font-size: 13px; color: #b0afab; }
         .forecast-card .fc-icon { font-size: 28px; margin: 6px 0; }
         .forecast-card .fc-temp { font-size: 16px; font-weight: bold; color: var(--text-color); }
-        .forecast-card .fc-temp .lo { color: var(--neon-blue); }
+        .forecast-card .fc-temp .lo { color: var(--temp-lo); }
         .forecast-card .fc-temp .hi { color: var(--neon-red); }
         .forecast-card .fc-rain { font-size: 12px; color: var(--primary-color); margin-top: 4px; }
 
@@ -545,6 +546,78 @@
         }
         .day-note-status.show { opacity: 1; }
 
+        /* 預報 / 天氣 / 匯率：最後更新時間標記 */
+        .forecast-updated { font-size: 12px; font-weight: normal; color: #b0afab; text-shadow: none; opacity: 0.85; }
+
+        /* 每日備忘錄：複製本日筆記按鈕 */
+        .day-note-copy {
+            margin-top: 8px;
+            padding: 6px 14px;
+            background-color: rgba(0, 255, 127, 0.06);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 0 0 3px var(--primary-color);
+            transition: all 0.2s ease;
+        }
+        .day-note-copy:hover { background-color: var(--primary-color); color: #111; text-shadow: none; box-shadow: 0 0 8px var(--primary-color); }
+
+        /* 資料備份 / 還原 */
+        .backup-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+        .backup-btn {
+            flex: 1;
+            min-width: 110px;
+            padding: 10px 12px;
+            background-color: rgba(212, 175, 55, 0.08);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 0 0 3px var(--gold);
+            box-shadow: 0 0 5px inset rgba(212, 175, 55, 0.15);
+            transition: all 0.2s ease;
+        }
+        .backup-btn:hover { background-color: var(--gold); color: #111; text-shadow: none; box-shadow: 0 0 8px var(--gold); }
+        .backup-btn.restore {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            text-shadow: 0 0 3px var(--primary-color);
+            box-shadow: 0 0 5px inset rgba(0, 255, 127, 0.15);
+        }
+        .backup-btn.restore:hover { background-color: var(--primary-color); color: #111; text-shadow: none; box-shadow: 0 0 8px var(--primary-color); }
+        .backup-area {
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 110px;
+            background-color: rgba(0, 0, 0, 0.25);
+            border: 1px solid #555;
+            border-radius: 4px;
+            color: var(--text-color);
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            padding: 10px;
+            resize: vertical;
+            outline: none;
+        }
+        .backup-area:focus { border-color: var(--gold); box-shadow: 0 0 4px var(--gold); }
+        .backup-status {
+            display: block;
+            min-height: 18px;
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--primary-color);
+            text-shadow: 0 0 3px var(--primary-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .backup-status.show { opacity: 1; }
+
     </style>
 </head>
 <body>
@@ -576,7 +649,7 @@
     </div>
 
     <div class="forecast-wrap">
-        <div class="forecast-title">🌦️ 旅遊期間天氣預報 (6/11 – 6/14)</div>
+        <div class="forecast-title">🌦️ 旅遊期間天氣預報 (6/11 – 6/14) <span id="forecast-updated" class="forecast-updated"></span></div>
         <div id="forecast-grid" class="forecast-grid">
             <div class="forecast-card"><div class="fc-date">載入中...</div></div>
         </div>
@@ -776,6 +849,20 @@
         </div>
     </details>
 
+    <details class="collapse-box">
+        <summary>💾 資料備份 / 還原</summary>
+        <div class="collapse-body">
+            <p style="color:#b0afab;font-size:13px;margin:0 0 12px;line-height:1.6;">打卡進度、各清單勾選與每日備忘錄都<span class="highlight">只存在這支瀏覽器</span>，換手機或清除瀏覽資料就會消失。出發前後可按「📤 產生備份」把資料複製下來（貼到記事本／用通訊軟體傳給自己保存）；需要時把備份內容貼回下方框中，再按「📥 還原」即可救回。</p>
+            <div class="backup-btns">
+                <button type="button" class="backup-btn" id="backup-export">📤 產生備份</button>
+                <button type="button" class="backup-btn" id="backup-copy">📋 複製</button>
+                <button type="button" class="backup-btn restore" id="backup-import">📥 還原</button>
+            </div>
+            <textarea id="backup-area" class="backup-area" spellcheck="false" placeholder="按「產生備份」會在這裡顯示可保存的內容。&#10;要還原時，請把先前保存的整段備份貼進這裡，再按「還原」。"></textarea>
+            <span class="backup-status" id="backup-status"></span>
+        </div>
+    </details>
+
     <div class="tabs-nav" role="tablist" aria-label="每日行程">
         <button id="tab-day1" class="tab-btn active" role="tab" aria-selected="true" aria-controls="day1" onclick="openTab(event, 'day1')"><span class="hk-day-icon icon-red">🚇</span> Day 1<br>(06/11)</button>
         <button id="tab-day2" class="tab-btn" role="tab" aria-selected="false" aria-controls="day2" onclick="openTab(event, 'day2')"><span class="hk-day-icon icon-green">🏰</span> Day 2<br>(06/12)</button>
@@ -900,6 +987,38 @@
 </footer>
 
 <script>
+    // 共用小工具：時間格式 HH:MM
+    function fmtTime(d) {
+        var h = ('0' + d.getHours()).slice(-2);
+        var m = ('0' + d.getMinutes()).slice(-2);
+        return h + ':' + m;
+    }
+
+    // 共用小工具：複製文字（優先用 Clipboard API，失敗時退回相容做法）
+    function copyText(text, cb) {
+        cb = cb || function () {};
+        function fallback() {
+            try {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.top = '-1000px';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.focus();
+                ta.select();
+                var ok = document.execCommand('copy');
+                document.body.removeChild(ta);
+                cb(ok);
+            } catch (e) { cb(false); }
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { cb(true); }, fallback);
+        } else {
+            fallback();
+        }
+    }
+
     // 1. 頁籤 (Tabs) 切換功能
     function activateTab(dayName) {
         var i, tabpanes, tabbtns;
@@ -911,6 +1030,7 @@
         for (i = 0; i < tabbtns.length; i++) {
             tabbtns[i].classList.remove("active");
             tabbtns[i].setAttribute("aria-selected", "false");
+            tabbtns[i].setAttribute("tabindex", "-1");   // 漫遊式 tabindex：未選取者退出 Tab 鍵順序
         }
         var pane = document.getElementById(dayName);
         var btn = document.getElementById("tab-" + dayName);
@@ -918,12 +1038,38 @@
         if (btn) {
             btn.classList.add("active");
             btn.setAttribute("aria-selected", "true");
+            btn.setAttribute("tabindex", "0");
         }
     }
 
     function openTab(evt, dayName) {
         activateTab(dayName);
     }
+
+    // 1a. 頁籤鍵盤操作：← → ↑ ↓ 切換、Home/End 跳到首尾（符合 ARIA tablist 模式）
+    (function setupTabKeys() {
+        var tablist = document.querySelector('.tabs-nav[role="tablist"]');
+        if (!tablist) return;
+        var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+        // 初始化漫遊式 tabindex（依目前作用中的頁籤）
+        tabs.forEach(function (t) {
+            t.setAttribute('tabindex', t.classList.contains('active') ? '0' : '-1');
+        });
+        tablist.addEventListener('keydown', function (e) {
+            var idx = tabs.indexOf(document.activeElement);
+            if (idx === -1) return;
+            var next = null;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % tabs.length;
+            else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (idx - 1 + tabs.length) % tabs.length;
+            else if (e.key === 'Home') next = 0;
+            else if (e.key === 'End') next = tabs.length - 1;
+            else return;
+            e.preventDefault();
+            var day = tabs[next].getAttribute('aria-controls');
+            if (day) activateTab(day);
+            tabs[next].focus();
+        });
+    })();
 
     // 1b. 自動跳到「今天」對應的分頁（旅程期間打開時）
     (function jumpToToday() {
@@ -1002,12 +1148,13 @@
             let weatherIcon = '☁️'; let weatherDesc = '多雲';
             if(weatherCode === 0) { weatherIcon = '☀️'; weatherDesc = '晴朗'; }
             else if(weatherCode >= 1 && weatherCode <= 3) { weatherIcon = '⛅'; weatherDesc = '晴時多雲'; }
+            else if(weatherCode >= 45 && weatherCode <= 48) { weatherIcon = '🌫️'; weatherDesc = '有霧'; }
             else if(weatherCode >= 51 && weatherCode <= 67) { weatherIcon = '🌧️'; weatherDesc = '雨天'; }
             else if(weatherCode >= 71 && weatherCode <= 77) { weatherIcon = '❄️'; weatherDesc = '下雪'; }
             else if(weatherCode >= 80 && weatherCode <= 82) { weatherIcon = '🌦️'; weatherDesc = '陣雨'; }
             else if(weatherCode >= 95) { weatherIcon = '⛈️'; weatherDesc = '雷陣雨'; }
 
-            document.getElementById('weather').innerHTML = `🇭🇰 香港即時：${weatherIcon} ${weatherDesc}，氣溫 ${temp}°C`;
+            document.getElementById('weather').innerHTML = `🇭🇰 香港即時：${weatherIcon} ${weatherDesc}，氣溫 ${temp}°C · 更新 ${fmtTime(new Date())}`;
         } catch (error) {
             document.getElementById('weather').innerHTML = '🇭🇰 香港即時天氣：暫時無法取得';
         }
@@ -1015,12 +1162,24 @@
     fetchWeather();
 
     // 4. 即時匯率換算器 (港幣 ⇄ 台幣)
-    let currentRate = 4.15; // 設定離線時的預設匯率估值 (1 HKD = ? TWD)
+    let currentRate = 4.15; // 設定離線且無快取時的預設匯率估值 (1 HKD = ? TWD)
+    const RATE_CACHE_KEY = 'exchange_rate_cache_v1';
     const hkdInput = document.getElementById('hkd-input');
     const twdResult = document.getElementById('twd-result');
     const rateInfo = document.getElementById('rate-info');
     const twdInput = document.getElementById('twd-input');
     const hkdResult = document.getElementById('hkd-result');
+
+    // 先載入上次成功取得的匯率，離線時也能顯示合理數字（而非寫死的預設值）
+    (function loadCachedRate() {
+        try {
+            var c = JSON.parse(localStorage.getItem(RATE_CACHE_KEY));
+            if (c && c.rate > 0) {
+                currentRate = c.rate;
+                rateInfo.textContent = '(上次匯率 ' + currentRate.toFixed(2) + (c.time ? ' · ' + c.time : '') + ')';
+            }
+        } catch (e) {}
+    })();
 
     // 港幣 → 台幣
     function renderConversion() {
@@ -1050,14 +1209,32 @@
             
             if (data && data.rates && data.rates.TWD) {
                 currentRate = data.rates.TWD;
-                rateInfo.textContent = `(匯率: ${currentRate.toFixed(2)})`;
+                var nowStr = fmtTime(new Date());
+                rateInfo.textContent = `(匯率 ${currentRate.toFixed(2)} · ${nowStr})`;
+                // 寫入快取，供下次離線時使用
+                try {
+                    localStorage.setItem(RATE_CACHE_KEY, JSON.stringify({ rate: currentRate, time: nowStr, ts: Date.now() }));
+                } catch (e) {}
                 // 匯率載入完成後，立即用新匯率重新換算兩個方向已輸入的金額
                 renderConversion();
                 renderReverseConversion();
             }
         } catch (error) {
-            rateInfo.textContent = `(預估匯率: ${currentRate})`;
-            console.error("匯率獲取失敗，使用預設值", error);
+            // 取得失敗：若有上次快取就沿用，否則才用寫死的預設值
+            try {
+                var c = JSON.parse(localStorage.getItem(RATE_CACHE_KEY));
+                if (c && c.rate > 0) {
+                    currentRate = c.rate;
+                    rateInfo.textContent = '(上次匯率 ' + currentRate.toFixed(2) + (c.time ? ' · ' + c.time : '') + ')';
+                } else {
+                    rateInfo.textContent = `(預估匯率 ${currentRate})`;
+                }
+            } catch (e) {
+                rateInfo.textContent = `(預估匯率 ${currentRate})`;
+            }
+            renderConversion();
+            renderReverseConversion();
+            console.error("匯率獲取失敗，改用快取／預設值", error);
         }
     }
     
@@ -1111,6 +1288,8 @@
                     + `</div>`;
             }
             grid.innerHTML = html;
+            var fu = document.getElementById('forecast-updated');
+            if (fu) fu.textContent = '· 更新 ' + fmtTime(new Date());
             runWeatherWatch(d);
         } catch (error) {
             grid.innerHTML = '<div class="forecast-card"><div class="fc-date">預報暫時無法取得</div>'
@@ -1425,27 +1604,135 @@ document.querySelectorAll('#packing-list input[type="checkbox"], #souvenir-list 
     });
 });
 
-// 每日備忘錄：自動儲存於本機 localStorage（輸入後 400ms 防抖）
+// 每日備忘錄：自動儲存於本機 localStorage（輸入後 400ms 防抖）+ 複製本日筆記
 document.querySelectorAll('.day-note').forEach(function(textarea) {
     var noteKey = 'note_' + textarea.dataset.noteId;
     var statusEl = document.querySelector('[data-status-for="' + textarea.dataset.noteId + '"]');
+    var savedLabel = statusEl ? statusEl.textContent : '✓ 已自動儲存';
+    var statusTimer;
+
+    // 統一的狀態提示（暫時顯示訊息，之後復原為「已自動儲存」字樣）
+    function flashStatus(msg) {
+        if (!statusEl) return;
+        statusEl.textContent = msg;
+        statusEl.classList.add('show');
+        clearTimeout(statusTimer);
+        statusTimer = setTimeout(function() {
+            statusEl.classList.remove('show');
+            statusEl.textContent = savedLabel;
+        }, 1800);
+    }
+
     // 讀取既有筆記
     textarea.value = localStorage.getItem(noteKey) || '';
-    var saveTimer, statusTimer;
+
+    // 新增「複製本日筆記」按鈕
+    var wrap = textarea.closest('.day-note-wrap');
+    if (wrap) {
+        var copyBtn = document.createElement('button');
+        copyBtn.type = 'button';
+        copyBtn.className = 'day-note-copy';
+        copyBtn.textContent = '📋 複製本日筆記';
+        copyBtn.addEventListener('click', function() {
+            var text = textarea.value.trim();
+            if (!text) { flashStatus('本日尚無內容可複製'); return; }
+            copyText(text, function(ok) {
+                flashStatus(ok ? '✓ 已複製本日筆記' : '無法自動複製，請手動選取');
+            });
+        });
+        // 放在自動儲存提示之後
+        if (statusEl && statusEl.parentNode === wrap) {
+            wrap.insertBefore(copyBtn, statusEl.nextSibling);
+        } else {
+            wrap.appendChild(copyBtn);
+        }
+    }
+
+    var saveTimer;
     textarea.addEventListener('input', function() {
         clearTimeout(saveTimer);
         saveTimer = setTimeout(function() {
             localStorage.setItem(noteKey, textarea.value);
-            if (statusEl) {
-                statusEl.classList.add('show');
-                clearTimeout(statusTimer);
-                statusTimer = setTimeout(function() {
-                    statusEl.classList.remove('show');
-                }, 1500);
-            }
+            flashStatus(savedLabel);
         }, 400);
     });
 });
+
+// 資料備份 / 還原：把打卡、清單、備忘錄打包成可保存的 JSON，並可貼回還原
+(function setupBackup() {
+    var exportBtn = document.getElementById('backup-export');
+    var copyBtn = document.getElementById('backup-copy');
+    var importBtn = document.getElementById('backup-import');
+    var area = document.getElementById('backup-area');
+    var statusEl = document.getElementById('backup-status');
+    if (!exportBtn || !area) return;
+
+    // 只備份「使用者產生」的資料，不含天氣快照／匯率快取等衍生資料
+    var PREFIXES = ['task_', 'pack_', 'note_'];
+    var statusTimer;
+
+    function setStatus(msg) {
+        if (!statusEl) return;
+        statusEl.textContent = msg;
+        statusEl.classList.add('show');
+        clearTimeout(statusTimer);
+        statusTimer = setTimeout(function() { statusEl.classList.remove('show'); }, 2800);
+    }
+
+    function matchesPrefix(k) {
+        for (var p = 0; p < PREFIXES.length; p++) {
+            if (k.indexOf(PREFIXES[p]) === 0) return true;
+        }
+        return false;
+    }
+
+    function collect() {
+        var data = {};
+        for (var i = 0; i < localStorage.length; i++) {
+            var k = localStorage.key(i);
+            if (k && matchesPrefix(k)) data[k] = localStorage.getItem(k);
+        }
+        return data;
+    }
+
+    exportBtn.addEventListener('click', function() {
+        var data = collect();
+        var count = Object.keys(data).length;
+        var payload = { app: 'hk-trip-2026', exportedAt: new Date().toISOString(), data: data };
+        area.value = JSON.stringify(payload, null, 2);
+        if (count === 0) {
+            setStatus('目前還沒有任何打卡／筆記資料');
+        } else {
+            setStatus('✓ 已產生備份（' + count + ' 筆），請按「複製」或自行選取保存');
+        }
+    });
+
+    copyBtn.addEventListener('click', function() {
+        if (!area.value.trim()) { setStatus('請先按「產生備份」'); return; }
+        copyText(area.value, function(ok) {
+            setStatus(ok ? '✓ 已複製到剪貼簿，貼到記事本或傳給自己保存吧' : '無法自動複製，請手動全選下方內容複製');
+        });
+        area.focus();
+        area.select();
+    });
+
+    importBtn.addEventListener('click', function() {
+        var raw = area.value.trim();
+        if (!raw) { setStatus('請先把先前保存的備份內容貼到下方框中'); area.focus(); return; }
+        var parsed;
+        try { parsed = JSON.parse(raw); } catch (e) { setStatus('⚠️ 內容格式不正確，請貼入完整的備份'); return; }
+        var d = (parsed && parsed.data && typeof parsed.data === 'object') ? parsed.data : parsed;
+        if (!d || typeof d !== 'object') { setStatus('⚠️ 找不到可還原的資料'); return; }
+
+        var keys = Object.keys(d).filter(function(k) { return matchesPrefix(k) && typeof d[k] === 'string'; });
+        if (keys.length === 0) { setStatus('⚠️ 這份備份裡沒有可還原的項目'); return; }
+        if (!window.confirm('確定要用這份備份覆蓋目前的打卡、清單與每日備忘錄嗎？\n此動作無法復原。')) return;
+
+        keys.forEach(function(k) { localStorage.setItem(k, d[k]); });
+        setStatus('✓ 已還原 ' + keys.length + ' 筆，正在重新整理…');
+        setTimeout(function() { location.reload(); }, 900);
+    });
+})();
 
 // 註冊 Service Worker（離線可用）。注意：僅在以 https 或 localhost 開啟時才會生效，
 // 直接用瀏覽器開本機檔案 (file://) 不會註冊。
