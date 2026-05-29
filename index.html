@@ -467,6 +467,180 @@
         @media (prefers-reduced-motion: reduce) {
             .confetti-piece { display: none; }
         }
+        /* 出發前氣象追蹤 */
+        .weather-watch {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            background-color: var(--header-bg-color);
+            border: 2px solid var(--neon-blue);
+            border-radius: 4px;
+            box-shadow: 0 0 8px var(--neon-blue), inset 0 0 6px rgba(0, 0, 255, 0.15);
+            padding: 16px 18px;
+        }
+        .ww-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #333;
+        }
+        .ww-title {
+            color: #66c2ff;
+            font-size: 15px;
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+        .ww-status {
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: bold;
+            text-shadow: 0 0 3px var(--gold);
+        }
+        .ww-status.alert {
+            color: var(--neon-red);
+            text-shadow: 0 0 5px var(--neon-red);
+        }
+        .ww-section { margin-top: 12px; }
+        .ww-section-title {
+            color: var(--secondary-color);
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+        .ww-change-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            background-color: rgba(255, 7, 58, 0.06);
+            border-left: 3px solid var(--neon-red);
+            font-size: 13px;
+            color: var(--text-color);
+            border-radius: 0 3px 3px 0;
+            flex-wrap: wrap;
+        }
+        .ww-change-row.cooler {
+            background-color: rgba(0, 0, 255, 0.06);
+            border-left-color: var(--neon-blue);
+        }
+        .ww-change-row.improved {
+            background-color: rgba(0, 255, 127, 0.06);
+            border-left-color: var(--primary-color);
+        }
+        .ww-change-date {
+            font-weight: bold;
+            min-width: 75px;
+            color: var(--gold);
+            text-shadow: 0 0 2px var(--gold);
+        }
+        .ww-change-detail { flex: 1; min-width: 0; }
+        .ww-delta-up { color: var(--neon-red); font-weight: bold; text-shadow: 0 0 2px var(--neon-red); }
+        .ww-delta-down { color: #66c2ff; font-weight: bold; text-shadow: 0 0 2px var(--neon-blue); }
+        .ww-tip {
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            background-color: rgba(0, 255, 127, 0.06);
+            border-left: 3px solid var(--primary-color);
+            font-size: 13px;
+            line-height: 1.55;
+            color: var(--text-color);
+            border-radius: 0 3px 3px 0;
+        }
+        .ww-tip:last-child { margin-bottom: 0; }
+        .ww-tip strong { color: var(--primary-color); text-shadow: 0 0 2px var(--primary-color); }
+        .ww-empty {
+            padding: 8px 10px;
+            color: #b0afab;
+            font-size: 13px;
+            font-style: italic;
+            background-color: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid #555;
+            border-radius: 0 3px 3px 0;
+        }
+
+        /* 緊急聯絡資訊 */
+        .emergency-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4px;
+            padding: 10px 0;
+            border-bottom: 1px dashed #333;
+        }
+        @media (min-width: 480px) {
+            .emergency-row { grid-template-columns: 1fr 1.2fr; gap: 6px 14px; align-items: baseline; }
+        }
+        .emergency-row:last-child { border-bottom: none; }
+        .emergency-label { color: #b0afab; font-size: 14px; }
+        .emergency-value {
+            color: var(--neon-red);
+            font-weight: bold;
+            font-size: 15px;
+            text-shadow: 0 0 3px var(--neon-red);
+            text-decoration: none;
+            word-break: break-word;
+        }
+        .emergency-value:hover { color: #fff; text-shadow: 0 0 6px var(--neon-red); }
+        .emergency-note {
+            margin-top: 14px;
+            padding: 10px 12px;
+            background-color: rgba(255, 7, 58, 0.06);
+            border-left: 3px solid var(--neon-red);
+            font-size: 13px;
+            color: #b0afab;
+            line-height: 1.5;
+        }
+
+        /* 每日備忘錄 */
+        .day-note-wrap {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed #555;
+        }
+        .day-note-label {
+            display: block;
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 0 0 3px var(--gold);
+        }
+        .day-note {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: rgba(212, 175, 55, 0.05);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 10px;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 0 4px inset rgba(212, 175, 55, 0.15);
+        }
+        .day-note:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 6px inset rgba(0, 255, 127, 0.15), 0 0 4px var(--primary-color);
+        }
+        .day-note-status {
+            display: block;
+            color: var(--primary-color);
+            font-size: 12px;
+            margin-top: 6px;
+            min-height: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 0 0 3px var(--primary-color);
+        }
+        .day-note-status.show { opacity: 1; }
+
     </style>
 </head>
 <body>
@@ -501,6 +675,21 @@
         <div class="forecast-title">🌦️ 旅遊期間天氣預報 (6/11 – 6/14)</div>
         <div id="forecast-grid" class="forecast-grid">
             <div class="forecast-card"><div class="fc-date">載入中...</div></div>
+        </div>
+    </div>
+
+    <div class="weather-watch" id="weather-watch" style="display:none;">
+        <div class="ww-header">
+            <span class="ww-title">🌪️ 出發前氣象追蹤</span>
+            <span class="ww-status" id="ww-status">啟動中…</span>
+        </div>
+        <div class="ww-section" id="ww-changes-section" style="display:none;">
+            <div class="ww-section-title">📊 與上次預報比較</div>
+            <div id="ww-changes"></div>
+        </div>
+        <div class="ww-section" id="ww-tips-section" style="display:none;">
+            <div class="ww-section-title">💡 出發準備提醒</div>
+            <div id="ww-tips"></div>
         </div>
     </div>
 
@@ -547,6 +736,75 @@
         </div>
     </details>
 
+    <details class="collapse-box">
+        <summary>🛍️ 必買伴手禮清單</summary>
+        <div class="collapse-body" id="souvenir-list">
+            <label class="pack-item"><input type="checkbox" data-pack="souvenir-lemonking"><span>檸檬王 甘草檸檬（上環永吉街，HK$60/包，輕便好分送）— Day 3</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="souvenir-jenny"><span>珍妮曲奇 小熊餅乾（上環/尖沙咀，限購5盒、僅收現金）— Day 3</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="souvenir-keewah"><span>奇華餅家 老婆餅 / 鳳梨酥（各大商場、機場均有售）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="souvenir-pharmacy"><span>龍城大藥房 保心安油 / 黃道益活絡油（九龍城）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="souvenir-tea"><span>福茗堂 / 英記 茶葉、奶茶包</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="souvenir-cosmetic"><span>SaSa / 卓悅 開架彩妝藥妝</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="souvenir-octopus"><span>八達通紀念卡 / 限量版（機場、便利商店）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="souvenir-citygate"><span>東薈城 名牌 Outlet 採購 — Day 4</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="souvenir-disney"><span>香港迪士尼專屬周邊 — Day 2</span></label>
+        </div>
+    </details>
+
+    <details class="collapse-box">
+        <summary>🍜 必吃美食打卡清單</summary>
+        <div class="collapse-body" id="food-list">
+            <label class="pack-item"><input type="checkbox" data-pack="food-roastgoose"><span>燒鵝瀨粉（一樂燒鵝 — Day 3）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="food-milktea"><span>絲襪奶茶 + 奶油豬（蘭芳園 — Day 3）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="food-claypot"><span>煲仔飯（廟街興記 — Day 3 晚餐）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="food-dimsum"><span>一盅兩件 港式點心（Day 4 早茶）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="food-eggtart"><span>港式蛋撻（泰昌餅家 / 檀島咖啡 / 茶餐廳皆可）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="food-eggwaffle"><span>雞蛋仔（媽咪雞蛋仔 / 利強記）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="food-pineapplebun"><span>菠蘿油（金華冰廳 / 華星冰室）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="food-wonton"><span>鮮蝦雲吞麵（麥奀記 / 沾仔記）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="food-dessert"><span>港式糖水（許留山 / 滿記甜品 / 地茂館）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="food-frenchtoast"><span>西多士（澳洲牛奶公司 / 蘭桂坊金記冰室）</span></label>
+            <label class="pack-item"><input type="checkbox" data-pack="food-curryfishball"><span>咖哩魚蛋（街邊小吃 / 廟街夜市）</span></label>
+        </div>
+    </details>
+
+    <details class="collapse-box">
+        <summary>🆘 緊急聯絡資訊</summary>
+        <div class="collapse-body">
+            <div class="emergency-row">
+                <span class="emergency-label">🚨 香港緊急電話（警/消/救護）</span>
+                <a class="emergency-value" href="tel:999">999</a>
+            </div>
+            <div class="emergency-row">
+                <span class="emergency-label">🇹🇼 駐港台北經濟文化辦事處<br><small style="opacity:0.7">急難救助 24h 緊急電話</small></span>
+                <a class="emergency-value" href="tel:+85261439012">+852 6143-9012</a>
+            </div>
+            <div class="emergency-row">
+                <span class="emergency-label">📞 駐港辦事處 服務組總機</span>
+                <a class="emergency-value" href="tel:+85225258642">+852 2525-8642</a>
+            </div>
+            <div class="emergency-row">
+                <span class="emergency-label">📱 外交部 旅外國人急難救助專線<br><small style="opacity:0.7">海外撥打免付費</small></span>
+                <a class="emergency-value" href="tel:+886800085095">+886 800-085-095</a>
+            </div>
+            <div class="emergency-row">
+                <span class="emergency-label">🏨 荃灣帝景酒店</span>
+                <a class="emergency-value" href="tel:+85224089168">+852 2408-9168</a>
+            </div>
+            <div class="emergency-row">
+                <span class="emergency-label">📍 酒店地址（給司機看）</span>
+                <span class="emergency-value">荃灣青山公路 353 號<br><small style="font-weight:normal;opacity:0.85">353 Castle Peak Road, Tsuen Wan</small></span>
+            </div>
+            <div class="emergency-row">
+                <span class="emergency-label">💳 信用卡掛失</span>
+                <span class="emergency-value" style="font-size:13px;opacity:0.85">出發前請查好自家卡片的 24h 客服電話並存在手機</span>
+            </div>
+            <div class="emergency-note">
+                💡 <strong>小提醒：</strong>香港 110V/220V 不同插座為英規三孔，旅遊期間若護照、現金遺失，請第一時間聯繫駐港辦事處急難救助專線；若是醫療緊急狀況，撥打 999 或前往「瑪嘉烈醫院」(葵涌，距離荃灣帝景酒店約 10 分鐘車程)。
+            </div>
+        </div>
+    </details>
+
     <div class="tabs-nav" role="tablist" aria-label="每日行程">
         <button id="tab-day1" class="tab-btn active" role="tab" aria-selected="true" aria-controls="day1" onclick="openTab(event, 'day1')"><span class="hk-day-icon icon-red">🚇</span> Day 1<br>(06/11)</button>
         <button id="tab-day2" class="tab-btn" role="tab" aria-selected="false" aria-controls="day2" onclick="openTab(event, 'day2')"><span class="hk-day-icon icon-green">🏰</span> Day 2<br>(06/12)</button>
@@ -569,6 +827,11 @@
             <p><strong>機場至酒店：</strong> 強烈建議在機場直接搭乘 <span class="highlight">龍運巴士 A38 線</span>，在「帝景酒店」站下車即可直達門口！(若錯過班次，可搭機場快綫至青衣站再轉乘計程車)</p>
             <p><strong>市區景點轉乘：</strong> 從酒店搭乘接駁車至 <span class="highlight">荃灣西站</span>。搭乘港鐵「屯馬綫」至鑽石山站轉「觀塘綫」達 <span class="highlight">黃大仙站</span>。參拜後，搭港鐵至 <span class="highlight">宋皇臺站</span>（B3 出口）步行前往九龍城寨。</p>
         </div>
+        <div class="day-note-wrap">
+            <label class="day-note-label" for="note-day1">📝 Day 1 備忘錄（自動儲存於本機）</label>
+            <textarea id="note-day1" class="day-note" data-note-id="day1" rows="4" placeholder="記下今天的花費、心情、想再訪的店家、需要補買的東西..."></textarea>
+            <span class="day-note-status" data-status-for="day1">✓ 已自動儲存</span>
+        </div>
     </div>
 
     <div id="day2" class="tab-pane" role="tabpanel" aria-labelledby="tab-day2">
@@ -585,6 +848,11 @@
             <p><strong>去程：</strong> 搭乘「酒店免費接駁車」或 234B 巴士至 <span class="highlight">荃灣站 / 荃灣西站</span>，轉乘港鐵（荃灣綫 ➔ 荔景站轉東涌綫 ➔ 欣澳站轉迪士尼綫）即可抵達。<a href="https://www.google.com/maps/search/?api=1&query=迪士尼站" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至迪士尼站</a></p>
             <p><strong>回程與建議：</strong> 煙火結束後通常較晚，若一家人玩得較為疲累，強烈建議直接從迪士尼搭乘計程車回帝景酒店（車程約20分鐘），花點小錢換取舒適。</p>
         </div>
+        <div class="day-note-wrap">
+            <label class="day-note-label" for="note-day2">📝 Day 2 備忘錄（自動儲存於本機）</label>
+            <textarea id="note-day2" class="day-note" data-note-id="day2" rows="4" placeholder="記下今天玩到的設施、最愛的角色、紀念品花費..."></textarea>
+            <span class="day-note-status" data-status-for="day2">✓ 已自動儲存</span>
+        </div>
     </div>
 
     <div id="day3" class="tab-pane" role="tabpanel" aria-labelledby="tab-day3">
@@ -593,6 +861,7 @@
         <ul>
             <li class="clickable-task" data-id="d3-1">🔬 <strong>上午：</strong> 前往「香港科學館」，體驗豐富的互動設施。<a href="https://www.google.com/maps/search/?api=1&query=香港科學館" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至科學館</a></li>
             <li class="clickable-task" data-id="d3-lunch">🦆 <strong>中午：</strong> 搭乘經典「天星小輪」過海至中環<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀天星碼頭" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至碼頭</a>，步行至米其林一星名店「一樂燒鵝」(中環士丹利街本店)，品嚐招牌燒鵝瀨粉與滷水鵝肉，連續多年榮獲米其林推薦。<a href="https://www.google.com/maps/search/?api=1&query=一樂燒鵝+中環士丹利街34號" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至一樂燒鵝</a></li>
+            <li class="clickable-task" data-id="d3-shop">🛒 <strong>飯後採買：</strong> 從一樂燒鵝步行 3–5 分鐘可一次走完香港兩大人氣伴手禮店！先至「<strong>檸檬王</strong>」(上環永吉街18號) 買甘草檸檬，再至「<strong>珍妮曲奇 上環店</strong>」(永和街15號) 買小熊餅乾。⚠️ <span class="highlight">兩家皆只收現金</span>，珍妮曲奇每人限購5盒、賣完即關門，建議飯後盡早前往。<a href="https://www.google.com/maps/search/?api=1&query=檸檬王+上環永吉街18號" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 檸檬王</a><a href="https://www.google.com/maps/search/?api=1&query=珍妮曲奇+上環永和街15號" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 珍妮曲奇</a></li>
             <li class="clickable-task" data-id="d3-2">☕ <strong>下午：</strong> 飯後體驗「半山扶手電梯」<a href="https://www.google.com/maps/search/?api=1&query=中環半山扶手電梯" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a>，至「蘭芳園」品嚐絲襪奶茶與奶油豬<a href="https://www.google.com/maps/search/?api=1&query=蘭芳園中環總店" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至蘭芳園</a>。隨後搭乘「山頂纜車」上太平山欣賞景色。<a href="https://www.google.com/maps/search/?api=1&query=山頂纜車" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至纜車站</a></li>
             <li class="clickable-task" data-id="d3-3">👵🏼 <strong>傍晚：</strong> 前往銅鑼灣鵝頸橋底，體驗獨特的「打小人」文化。<a href="https://www.google.com/maps/search/?api=1&query=鵝頸橋打小人" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至鵝頸橋</a></li>
             <li class="clickable-task" data-id="d3-4">🌌 <strong>晚上：</strong> 20:00 於尖沙咀觀賞「幻彩詠香江」<a href="https://www.google.com/maps/search/?api=1&query=尖沙咀海濱長廊" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航</a>。最後至「廟街夜市」品嚐興記煲仔飯。<a href="https://www.google.com/maps/search/?api=1&query=廟街興記煲仔飯" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至興記</a></li>
@@ -603,13 +872,18 @@
             <p><strong>過海與太平山：</strong> 尖沙咀碼頭搭 <span class="highlight">天星小輪</span> 至中環。中環市區以步行銜接，至花園道搭 <span class="highlight">山頂纜車</span>。</p>
             <p><strong>夜間回程：</strong> 逛完油麻地廟街後，搭乘港鐵荃灣綫直達 <span class="highlight">荃灣站</span>，再轉乘計程車或留意接駁車班次返回帝景酒店。</p>
         </div>
+        <div class="day-note-wrap">
+            <label class="day-note-label" for="note-day3">📝 Day 3 備忘錄（自動儲存於本機）</label>
+            <textarea id="note-day3" class="day-note" data-note-id="day3" rows="4" placeholder="一樂燒鵝好吃嗎？檸檬王買了幾包？太平山夜景怎麼樣？..."></textarea>
+            <span class="day-note-status" data-status-for="day3">✓ 已自動儲存</span>
+        </div>
     </div>
 
     <div id="day4" class="tab-pane" role="tabpanel" aria-labelledby="tab-day4">
         <h2 class="pane-title">🛍️ Day 4：昂坪纜車、東薈城與賦歸</h2>
         <p>把握最後時光，體驗高空纜車的壯麗，並完成伴手禮採購。</p>
         <ul>
-            <li class="clickable-task" data-id="d4-1">🥢 <strong>上午：</strong> 辦理退房，前往荃灣市區找間茶樓體驗傳統「一盅兩件」港式早茶。</li>
+            <li class="clickable-task" data-id="d4-1">🥢 <strong>上午：</strong> 辦理退房後，於荃灣享用傳統「一盅兩件」港式早茶。推薦「<strong>老馮茶居</strong>」(荃灣千色匯II，近荃灣站，價格親民、好帶行李)；想體驗鄉郊老字號可考慮「<strong>端記茶樓</strong>」(川龍村，需轉小巴 15 分鐘，山景、推車仔點心、僅收現金)。<a href="https://www.google.com/maps/search/?api=1&query=老馮茶居+荃灣千色匯II" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 老馮茶居</a><a href="https://www.google.com/maps/search/?api=1&query=端記茶樓+荃灣川龍村" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 端記茶樓</a></li>
             <li class="clickable-task" data-id="d4-2">🚠 <strong>近午：</strong> 前往東涌搭乘「昂坪360纜車」，從高空俯瞰大嶼山壯麗景色與天壇大佛。<a href="https://www.google.com/maps/search/?api=1&query=昂坪360東涌站" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至纜車站</a></li>
             <li class="clickable-task" data-id="d4-3">🛒 <strong>下午：</strong> 回到起點的「東薈城名店倉 (Citygate Outlets)」進行最後血拼與享用晚餐。<a href="https://www.google.com/maps/search/?api=1&query=東薈城名店倉" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至東薈城</a></li>
             <li class="clickable-task" data-id="d4-4">✈️ <strong>航班資訊：</strong> 18:15 香港 (HKG) 起飛 ➔ 19:55 抵達台中 (RMQ)。帶著滿滿回憶，平安返家！</li>
@@ -618,6 +892,11 @@
             <p>🚇 <strong>交通攻略：帝景酒店 ➔ 東涌 (昂坪/東薈城) ➔ 機場</strong></p>
             <p><strong>前往東涌：</strong> 搭乘酒店接駁車至荃灣市區，搭乘港鐵 (荃灣站 ➔ 荔景站轉東涌綫 ➔ 直達 <span class="highlight">東涌站</span>)。昂坪纜車站與東薈城皆在東涌站旁步行範圍內。</p>
             <p><strong>最佳建議 (東涌至機場)：</strong> 行程結束後 <span class="highlight">不建議搭港鐵</span>。請直接在東涌站旁的巴士總站搭乘 <strong>S1 循環線公車</strong>，約 15 分鐘即可直達機場，方便又便宜！<a href="https://www.google.com/maps/search/?api=1&query=東涌站巴士總站" target="_blank" rel="noopener noreferrer" class="nav-btn">📍 導航至S1巴士站</a></p>
+        </div>
+        <div class="day-note-wrap">
+            <label class="day-note-label" for="note-day4">📝 Day 4 備忘錄（自動儲存於本機）</label>
+            <textarea id="note-day4" class="day-note" data-note-id="day4" rows="4" placeholder="昂坪纜車景色如何？東薈城買了什麼？這趟旅行最難忘的瞬間..."></textarea>
+            <span class="day-note-status" data-status-for="day4">✓ 已自動儲存</span>
         </div>
     </div>
 
@@ -840,13 +1119,201 @@
                     + `</div>`;
             }
             grid.innerHTML = html;
+            runWeatherWatch(d);
         } catch (error) {
             grid.innerHTML = '<div class="forecast-card"><div class="fc-date">預報暫時無法取得</div>'
                 + '<div class="fc-icon">📡</div><div class="fc-temp">出發前再回來看看</div></div>';
             console.error('天氣預報獲取失敗', error);
+            runWeatherWatch(null);
         }
     }
     fetchForecast();
+
+    // 出發前氣象追蹤：比較今日與上次預報、給打包建議
+    function runWeatherWatch(daily) {
+        var TRIP_START = new Date("2026-06-11T00:00:00+08:00");
+        var TRIP_END = new Date("2026-06-14T23:59:59+08:00");
+        var now = new Date();
+        var msToTrip = TRIP_START - now;
+        var daysToTrip = Math.ceil(msToTrip / (1000 * 60 * 60 * 24));
+
+        var watchEl = document.getElementById('weather-watch');
+        var statusEl = document.getElementById('ww-status');
+        var changesSection = document.getElementById('ww-changes-section');
+        var changesEl = document.getElementById('ww-changes');
+        var tipsSection = document.getElementById('ww-tips-section');
+        var tipsEl = document.getElementById('ww-tips');
+
+        // 旅程已結束則不顯示
+        if (now > TRIP_END) {
+            watchEl.style.display = 'none';
+            return;
+        }
+
+        watchEl.style.display = 'block';
+
+        // 設定狀態提示
+        statusEl.classList.remove('alert');
+        if (now < TRIP_START) {
+            if (daysToTrip > 14) {
+                statusEl.textContent = '距離出發 ' + daysToTrip + ' 天 · 等待預報開放中';
+            } else if (daysToTrip > 7) {
+                statusEl.textContent = '距離出發 ' + daysToTrip + ' 天 · 預報已啟動追蹤';
+            } else if (daysToTrip > 3) {
+                statusEl.textContent = '📢 出發前 ' + daysToTrip + ' 天 · 密切關注中';
+                statusEl.classList.add('alert');
+            } else if (daysToTrip > 0) {
+                statusEl.textContent = '🚨 出發倒數 ' + daysToTrip + ' 天 · 請完成最後確認';
+                statusEl.classList.add('alert');
+            } else {
+                statusEl.textContent = '✈️ 今天出發！';
+                statusEl.classList.add('alert');
+            }
+        } else {
+            var daysLeft = Math.ceil((TRIP_END - now) / (1000 * 60 * 60 * 24));
+            statusEl.textContent = '🇭🇰 旅程進行中 · 還有 ' + daysLeft + ' 天';
+        }
+
+        // 沒有資料則只顯示狀態
+        if (!daily || !daily.time || daily.time.length === 0) {
+            changesSection.style.display = 'none';
+            tipsSection.style.display = 'none';
+            return;
+        }
+
+        // 讀取上一次快照（一日一存）
+        var SNAP_KEY = 'forecast_snapshots_v1';
+        var todayKey = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+        var snaps = {};
+        try { snaps = JSON.parse(localStorage.getItem(SNAP_KEY)) || {}; } catch (e) { snaps = {}; }
+
+        var previousDaily = null;
+        if (snaps.current && snaps.current.date !== todayKey) {
+            // 跨天造訪：把舊的 current 變成 previous
+            snaps.previous = snaps.current;
+        }
+        if (snaps.previous && snaps.previous.daily) {
+            previousDaily = snaps.previous.daily;
+        }
+
+        // 比較變化
+        var weekday = ['日', '一', '二', '三', '四', '五', '六'];
+        if (previousDaily && previousDaily.time) {
+            var changes = [];
+            for (var i = 0; i < daily.time.length; i++) {
+                var date = daily.time[i];
+                var pIdx = previousDaily.time.indexOf(date);
+                if (pIdx === -1) continue;
+
+                var curHi = daily.temperature_2m_max[i];
+                var prevHi = previousDaily.temperature_2m_max[pIdx];
+                var curLo = daily.temperature_2m_min[i];
+                var prevLo = previousDaily.temperature_2m_min[pIdx];
+                var curRain = daily.precipitation_probability_max ? daily.precipitation_probability_max[i] : null;
+                var prevRain = previousDaily.precipitation_probability_max ? previousDaily.precipitation_probability_max[pIdx] : null;
+
+                if (curHi == null || prevHi == null) continue;
+
+                var hiDelta = curHi - prevHi;
+                var loDelta = (curLo != null && prevLo != null) ? curLo - prevLo : 0;
+                var rainDelta = (curRain != null && prevRain != null) ? curRain - prevRain : 0;
+
+                if (Math.abs(hiDelta) >= 1 || Math.abs(rainDelta) >= 10) {
+                    changes.push({
+                        date: date, curHi: curHi, curLo: curLo, curRain: curRain,
+                        hiDelta: hiDelta, loDelta: loDelta, rainDelta: rainDelta
+                    });
+                }
+            }
+
+            if (changes.length > 0) {
+                var html = changes.map(function(c) {
+                    var dt = new Date(c.date + 'T00:00:00+08:00');
+                    var dateLabel = (dt.getMonth() + 1) + '/' + dt.getDate() + ' (' + weekday[dt.getDay()] + ')';
+                    var cls = '';
+                    if (c.hiDelta < -1 || c.rainDelta < -15) cls = 'improved';
+                    else if (c.hiDelta < 0 && c.rainDelta <= 0) cls = 'cooler';
+
+                    var parts = [];
+                    if (Math.abs(c.hiDelta) >= 1) {
+                        var arrow = c.hiDelta > 0 ? '↑' : '↓';
+                        var cls2 = c.hiDelta > 0 ? 'ww-delta-up' : 'ww-delta-down';
+                        parts.push('高溫 <span class="' + cls2 + '">' + arrow + Math.abs(c.hiDelta).toFixed(1) + '°C</span>（現 ' + Math.round(c.curHi) + '°）');
+                    }
+                    if (Math.abs(c.rainDelta) >= 10 && c.curRain != null) {
+                        var arrowR = c.rainDelta > 0 ? '↑' : '↓';
+                        var cls2R = c.rainDelta > 0 ? 'ww-delta-up' : 'ww-delta-down';
+                        parts.push('降雨 <span class="' + cls2R + '">' + arrowR + Math.round(Math.abs(c.rainDelta)) + '%</span>（現 ' + Math.round(c.curRain) + '%）');
+                    }
+
+                    return '<div class="ww-change-row ' + cls + '">'
+                        + '<span class="ww-change-date">' + dateLabel + '</span>'
+                        + '<span class="ww-change-detail">' + parts.join('、') + '</span></div>';
+                }).join('');
+                changesEl.innerHTML = html;
+                changesSection.style.display = 'block';
+            } else {
+                changesEl.innerHTML = '<div class="ww-empty">📋 與上次預報相比沒有明顯變化（高溫變動 &lt; 1°C 且降雨機率變動 &lt; 10%）</div>';
+                changesSection.style.display = 'block';
+            }
+        } else {
+            changesEl.innerHTML = '<div class="ww-empty">📋 首次取得預報，明天再回來就能看到變化追蹤</div>';
+            changesSection.style.display = 'block';
+        }
+
+        // 根據預報產出打包/準備提醒
+        var validHi = daily.temperature_2m_max.filter(function(x) { return x != null; });
+        var validLo = daily.temperature_2m_min.filter(function(x) { return x != null; });
+        var validRain = (daily.precipitation_probability_max || []).filter(function(x) { return x != null; });
+
+        if (validHi.length > 0) {
+            var maxHi = Math.max.apply(null, validHi);
+            var minLo = validLo.length > 0 ? Math.min.apply(null, validLo) : null;
+            var maxRain = validRain.length > 0 ? Math.max.apply(null, validRain) : null;
+
+            var tips = [];
+
+            if (maxRain != null) {
+                if (maxRain >= 70) {
+                    tips.push('☔ <strong>高機率降雨</strong>（最高 ' + Math.round(maxRain) + '%）：雨衣／雨傘必備，建議穿防水鞋');
+                } else if (maxRain >= 40) {
+                    tips.push('🌦️ <strong>局部陣雨機率較高</strong>（最高 ' + Math.round(maxRain) + '%）：折疊傘隨身備用');
+                }
+            }
+
+            if (maxHi >= 33) {
+                tips.push('🥵 <strong>高溫炎熱</strong>（最高 ' + Math.round(maxHi) + '°C）：防曬乳、帽子、太陽眼鏡、隨身水');
+            } else if (maxHi >= 30) {
+                tips.push('☀️ <strong>夏日溫度</strong>（最高 ' + Math.round(maxHi) + '°C）：注意防曬與補水');
+            }
+
+            if (minLo != null && minLo <= 22) {
+                tips.push('🧥 <strong>早晚較涼</strong>（最低 ' + Math.round(minLo) + '°C）：建議備一件薄外套');
+            }
+
+            if (minLo != null && (maxHi - minLo) >= 7) {
+                tips.push('👕 <strong>日夜溫差 ' + Math.round(maxHi - minLo) + '°C</strong>：洋蔥式穿搭較舒適');
+            }
+
+            // 香港六月通用提醒
+            tips.push('💧 香港六月為雨季，<strong>不論預報如何都建議帶輕便雨具</strong>；天氣濕熱，透氣排汗衣物更舒適');
+
+            if (daysToTrip <= 3 && daysToTrip > 0) {
+                tips.push('🎒 <strong>出發倒數提醒</strong>：可以打開上方「行前打包清單」做最後確認囉！');
+            }
+
+            tipsEl.innerHTML = tips.map(function(t) { return '<div class="ww-tip">' + t + '</div>'; }).join('');
+            tipsSection.style.display = 'block';
+        } else {
+            tipsSection.style.display = 'none';
+        }
+
+        // 儲存今日快照（每天一次）
+        if (!snaps.current || snaps.current.date !== todayKey) {
+            snaps.current = { date: todayKey, daily: daily };
+            try { localStorage.setItem(SNAP_KEY, JSON.stringify(snaps)); } catch (e) {}
+        }
+    }
 	
 	// 行程打卡與狀態保存功能
 	// 進度條：統計所有行程的完成比例
@@ -946,8 +1413,8 @@ document.querySelectorAll('.clickable-task').forEach((task, index) => {
 updateProgress();
 pageReady = true;   // 之後使用者打卡達 100% 才會觸發慶祝
 
-// 行前打包清單：勾選狀態存於本機
-document.querySelectorAll('#packing-list input[type="checkbox"]').forEach(function(box) {
+// 行前打包清單 + 伴手禮清單 + 美食清單：勾選狀態存於本機
+document.querySelectorAll('#packing-list input[type="checkbox"], #souvenir-list input[type="checkbox"], #food-list input[type="checkbox"]').forEach(function(box) {
     var label = box.closest('.pack-item');
     var key = 'pack_' + box.dataset.pack;
     function render() {
@@ -963,6 +1430,28 @@ document.querySelectorAll('#packing-list input[type="checkbox"]').forEach(functi
             localStorage.removeItem(key);
         }
         render();
+    });
+});
+
+// 每日備忘錄：自動儲存於本機 localStorage（輸入後 400ms 防抖）
+document.querySelectorAll('.day-note').forEach(function(textarea) {
+    var noteKey = 'note_' + textarea.dataset.noteId;
+    var statusEl = document.querySelector('[data-status-for="' + textarea.dataset.noteId + '"]');
+    // 讀取既有筆記
+    textarea.value = localStorage.getItem(noteKey) || '';
+    var saveTimer, statusTimer;
+    textarea.addEventListener('input', function() {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(function() {
+            localStorage.setItem(noteKey, textarea.value);
+            if (statusEl) {
+                statusEl.classList.add('show');
+                clearTimeout(statusTimer);
+                statusTimer = setTimeout(function() {
+                    statusEl.classList.remove('show');
+                }, 1500);
+            }
+        }, 400);
     });
 });
 
